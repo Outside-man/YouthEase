@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hziee.smvc.mapper.ForumMapper" >
+  <resultMap id="BaseResultMap" type="hziee.smvc.model.Forum" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="types" property="types" jdbcType="VARCHAR" />
+    <result column="addition_status" property="additionStatus" jdbcType="VARCHAR" />
+    <result column="addition_id" property="additionId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_forum
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hziee.smvc.model.Forum" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into s_forum (title, user_id, content,
+      types, addition_status, addition_id,
+      add_time)
+    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+      #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER},
+      #{addTime,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="hziee.smvc.model.Forum" >
+    update s_forum
+    set title = #{title,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      types = #{types,jdbcType=VARCHAR},
+      addition_status = #{additionStatus,jdbcType=VARCHAR},
+      addition_id = #{additionId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, title, user_id, content, types, addition_status, addition_id, add_time
+    from s_forum
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, title, user_id, content, types, addition_status, addition_id, add_time
+    from s_forum
+  </select>
+</mapper>
