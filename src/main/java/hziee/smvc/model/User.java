@@ -1,63 +1,73 @@
 package hziee.smvc.model;
 
 public class User {
-    private Integer userid;
+    private Integer id;
 
-    private String username;
+    private String nuserName;
 
-    private Integer userAuthority;
+    private String passwordHash;
 
-    private String userPersonalFile;
+    private String realName;
 
-    private String userPasswordHash;
+    private String email;
 
-    private String userEmail;
+    private Integer authority;
 
-    public Integer getUserid() {
-        return userid;
+    private Integer addTime;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getNuserName() {
+        return nuserName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setNuserName(String nuserName) {
+        this.nuserName = nuserName == null ? null : nuserName.trim();
     }
 
-    public Integer getUserAuthority() {
-        return userAuthority;
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public void setUserAuthority(Integer userAuthority) {
-        this.userAuthority = userAuthority;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash == null ? null : passwordHash.trim();
     }
 
-    public String getUserPersonalFile() {
-        return userPersonalFile;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setUserPersonalFile(String userPersonalFile) {
-        this.userPersonalFile = userPersonalFile == null ? null : userPersonalFile.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
     }
 
-    public String getUserPasswordHash() {
-        return userPasswordHash;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserPasswordHash(String userPasswordHash) {
-        this.userPasswordHash = userPasswordHash == null ? null : userPasswordHash.trim();
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
-    public String getUserEmail() {
-        return userEmail;
+    public Integer getAuthority() {
+        return authority;
     }
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail == null ? null : userEmail.trim();
+    public void setAuthority(Integer authority) {
+        this.authority = authority;
+    }
+
+    public Integer getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(Integer addTime) {
+        this.addTime = addTime;
     }
 }

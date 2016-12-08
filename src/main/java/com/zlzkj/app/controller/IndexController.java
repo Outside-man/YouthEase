@@ -24,15 +24,8 @@ public class IndexController extends BaseController{
 	@RequestMapping(value={"/"})
 	public String index(Model model,HttpServletRequest request,HttpServletResponse response) {
 		
-//		User test = new User();
-//		test.setAddTime(Fn.time());
-//		test.setLoginName("simon");
-//		test.setLoginPass("123456");
-//		test.setSex((byte) 1);
-//		userService.save(test);
-		
-		//User user = userService.find();
-		
+
+
 
 		
 		return IndexController.index;

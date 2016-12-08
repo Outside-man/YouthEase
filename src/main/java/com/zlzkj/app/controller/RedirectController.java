@@ -17,7 +17,6 @@ public class RedirectController {
         System.out.println(request.getRequestURI());
         String s=request.getRequestURI();
        String part[]=s.split("/");
-      return IndexController.root+"/"+part[part.length-1];
+      return "/"+IndexController.root+"/"+part[part.length-1];
     }
-
 }

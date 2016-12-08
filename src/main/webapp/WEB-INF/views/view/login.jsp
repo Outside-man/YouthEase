@@ -80,12 +80,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="span12">
         <div class="navbar navbar_">
               <div class="container">
-            <h1 class="brand brand_"><a href="index.html"><img alt="" src="img/logo.png"> </a></h1>
+            <h1 class="brand brand_"><a href="redirect/index"><img alt="" src="img/logo.png"> </a></h1>
             <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
             <div class="nav-collapse nav-collapse_  collapse">
                   <ul class="nav sf-menu">
-                <li class="active"><a href="index.html">首页</a></li>
-                <li class="sub-menu"><a href="login.html">帖子汇总&nbsp;</a> 
+                <li class="active"><a href="redirect/index">首页</a></li>
+                <li class="sub-menu"><a href="redirect/index">帖子汇总&nbsp;</a>
                       <ul>
                     <li><a href="emotion.html">感情帖</a></li>
                 <li><a href="trade.html">交易帖</a></li>

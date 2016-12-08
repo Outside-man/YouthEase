@@ -84,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li><a href="redirect/mix">杂&nbsp;帖</a></li>
                   </ul>
                     </li>
-                <li><a href="redirect/work">作品栈</a></li>
+                <li><a href="work.jsp">作品栈</a></li>
                       <% if(request.getSession().getAttribute("user")==null) {
 
                       %>
@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <h2>Trade!</h2>
               <div>
             <p>新一代大学生论坛，专为大学生打造的信息发布平台，发帖的同时让更多人知道你的作品、经历、心情以及进行各种交易，娱乐交友两不误。快来发帖交易吧！</p>
-            <p style="text-align:center; padding-top:20px;"><a href="redirect/post" class="btn btn-1">我要发帖</a></p>
+            <p style="text-align:center; padding-top:20px;"><a href="#" class="btn btn-1">我要发帖</a></p>
           </div>
             </div>
       </div>

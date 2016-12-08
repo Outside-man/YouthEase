@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 @Component
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer userid);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 
-    User selectByPrimaryKey(Integer userid);
-    User selectByEmail(String email);
+    User selectByPrimaryKey(Integer id);
+
     List<User> selectAll();
 
     int updateByPrimaryKey(User record);
