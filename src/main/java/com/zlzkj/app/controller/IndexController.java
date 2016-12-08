@@ -23,11 +23,6 @@ public class IndexController extends BaseController{
 	public static String root = "view";
 	@RequestMapping(value={"/"})
 	public String index(Model model,HttpServletRequest request,HttpServletResponse response) {
-		
-
-
-
-		
 		return IndexController.index;
 	}
 	

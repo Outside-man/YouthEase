@@ -136,7 +136,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </li>
               <c:forEach items="${forum}" varStatus="i" var="item" >
               <li>
-                  <h2 href="1234.html">${item}</h2> ----- <h3> ${item}</h3>
+                  <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
+                  <a href="${item.id}.tie" class="btn btn-1">Read This</a>
               </li>
               </c:forEach>
           </ul>

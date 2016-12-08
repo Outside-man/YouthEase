@@ -43,7 +43,7 @@ public class UserService  {
 
         SQLBuilder sqlBuilder  = SQLBuilder.getSQLBuilder(User.class);
         String sqlex= sqlBuilder.fields("id,email").where("email=#{0}").selectSql();
-        List<Row> list = sqlRunner.select(sqlex);
+        List<Row> list = sqlRunner.select(sqlex,s);
         Integer id = null;
         for(Row r:list){
             id = (Integer) r.get("id");
@@ -61,8 +61,12 @@ public class UserService  {
     }
     public User getUser(String email, String password){
         String hash=org.apache.commons.codec.digest.DigestUtils.md5Hex(password);
+        System.out.println(hash);
         Integer userId = selectUserIdFromEmail(email);
+        System.out.println(userId);
         User realUser= userMapper.selectByPrimaryKey(userId);
+        System.out.println(realUser);
+        System.out.println(realUser.getPasswordHash());
         if(realUser==null)
             return null;
         if(realUser.getPasswordHash().equals(hash)){

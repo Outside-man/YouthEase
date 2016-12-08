@@ -39,9 +39,13 @@ public class UserController {
     }
     @RequestMapping("/login")
     public String Login(User user,HttpServletRequest request,HttpServletResponse response){
+
         User reuser = userService.getUser(user.getEmail(),user.getPasswordHash());
+        System.out.println(user.getPasswordHash());
+        if(reuser==null)
+            return "/"+IndexController.root+"/"+"register";
         request.getSession().setAttribute("user",reuser);
-        return IndexController.index;
+        return "/"+IndexController.index;
     }
     @RequestMapping("/logout")
         public String Logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
