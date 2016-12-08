@@ -99,29 +99,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="row">
         <article class="span8">
          <div class="inner-1">    
-         <form id="search" action="search.php" method="GET" accept-charset="utf-8" >     
+         <form id="postforum" action="post_forum" method="GET" accept-charset="utf-8" >
           <ul class="list-blog">
             <li>  
             
              <img alt="" src="img/blog-3.jpg">
             <div class="clearfix">
             <h3>标题</h3>
-              <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" style="width: 100%;" ></div>
+              <input type="text" name="title" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" style="width: 100%;" ></div>
               <div class="clear"></div> 
               <div style="float: right;position: relative;top:18px;"> 
              <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
             <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">Admin</a></div>
                 </div>    
               <h3>内容</h3>
-              <textarea type="text" rows="20" style="width: 100%;" 
+              <textarea type="text" name="content" rows="20" style="width: 100%;"
               > 
-              </textarea>                              
-              
-              <a href="#" class="btn btn-1" style="float: right;">发帖</a>          
-            </li> 
+              </textarea>
+                <button type="submit"  id="submit_btn"
+                        class="btn btn-primary btn-lg" style="float: right;">&nbsp;发&nbsp;贴&nbsp; </button>
+            </li>
           </ul>
           </form>
-          </div>  
+          </div>
         </article>
         <article class="span4">
           <h3>分类</h3>

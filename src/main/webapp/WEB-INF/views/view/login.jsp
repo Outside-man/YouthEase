@@ -124,12 +124,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <form action="user/login" id="login_form" method="post">
           <div class="form-group">
             <label for="email" class="t">邮　箱：</label>
-            <input id="email" value="" name="userEmail" type="text" class="form-control x319 in"
+            <input id="email" value="" name="email" type="text" class="form-control x319 in"
             autocomplete="off">
           </div>
           <div class="form-group">
             <label for="password" class="t">密　码：</label>
-            <input id="password" value="" name="userPasswordHash" type="password"
+            <input id="password" value="" name="passwordHash" type="password"
             class="password form-control x319 in">
           </div>
           

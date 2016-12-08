@@ -84,17 +84,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
             <div class="nav-collapse nav-collapse_  collapse">
                   <ul class="nav sf-menu">
-                <li class="active"><a href="index.jsp">首页</a></li>
-                <li class="sub-menu"><a href="login.jsp">帖子汇总&nbsp;</a>
+                <li class="active"><a href="index.html">首页</a></li>
+                <li class="sub-menu"><a href="login.html">帖子汇总&nbsp;</a>
                       <ul>
-                    <li><a href="emotion.jsp">感情帖</a></li>
-                <li><a href="trade.jsp">交易帖</a></li>
-                <li><a href="mix.jsp">杂&nbsp;帖</a></li>
+                    <li><a href="emotion.html">感情帖</a></li>
+                <li><a href="trade.html">交易帖</a></li>
+                <li><a href="mix.html">杂&nbsp;帖</a></li>
                   </ul>
                     </li>
-                <li><a href="work.jsp">作品栈</a></li>
-                <li><a href="contact.jsp">联系我们</a></li>
-                <li><h3><a href="locate.jsp">杭州</a></h3></li>
+                <li><a href="work.html">作品栈</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+                <li><h3><a href="locate.html">杭州</a></h3></li>
               </ul>
                 </div>
           </div>

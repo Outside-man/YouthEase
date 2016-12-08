@@ -76,11 +76,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
             <div class="nav-collapse nav-collapse_  collapse">
                   <ul class="nav sf-menu">
-                <li class="active"><a href="index.jsp">首页</a></li>
+                <li class="active"><a href="index.html">首页</a></li>
                 <li class="sub-menu"><a href="#">帖子汇总&nbsp;</a> 
                       <ul>
-                    <li><a href="redirect/emotion">感情帖</a></li>
-                <li><a href="redirect/trade">交易帖</a></li>
+                    <li><a href="emotion.html">感情帖</a></li>
+                <li><a href="trade.html">交易帖</a></li>
                 <li><a href="redirect/mix">杂&nbsp;帖</a></li>
                   </ul>
                     </li>
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <ul>
 
 
-                    <li><a href="redirect/register">注册</a></li> </ul>
+                    <li><a href="register.html">注册</a></li> </ul>
                     <%}else{%>
                           <li><a href="user/logout">登出</a></li>
                           <%}%>
@@ -127,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <h2>Trade!</h2>
               <div>
             <p>新一代大学生论坛，专为大学生打造的信息发布平台，发帖的同时让更多人知道你的作品、经历、心情以及进行各种交易，娱乐交友两不误。快来发帖交易吧！</p>
-            <p style="text-align:center; padding-top:20px;"><a href="#" class="btn btn-1">我要发帖</a></p>
+            <p style="text-align:center; padding-top:20px;"><a href="post.html" class="btn btn-1">我要发帖</a></p>
           </div>
             </div>
       </div>
