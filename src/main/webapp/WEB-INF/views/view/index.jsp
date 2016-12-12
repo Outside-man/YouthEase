@@ -94,7 +94,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                     <li><a href="register.html">注册</a></li> </ul>
                     <%}else{%>
-                          <li><a href="user/logout">登出</a></li>
+                      <li class="sub-menu"><a href="self_center.html">个人中心</a>
+                      <ul><a href="user/logout">登出</a></ul>
                           <%}%>
 
                     </li>

@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="bg-content"> 
       
       <!-- content -->
-      
+
       <div id="content"><div class="ic"></div>
     <div class="container">
           <div class="row">
@@ -96,11 +96,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="clear"></div>
         <ul class="thumbnails thumbnails-1 list-services">
               <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-1.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
+            <div class="thumbnail thumbnail-1"> <img  src="${iconUrl}" alt="">
+                  <section> <a href="#" class="link-1"></a>
+                      <form id=${user.id} action="uploads/userIcon" method="post" enctype="multipart/form-data">
+                          照片：<input type="file" name="icon"/>
+                          <button type="submit"  id="submit_btn"
+                                  class="btn btn-primary btn-lg">&nbsp;上&nbsp;传&nbsp; </button>
+                      </form>
+
               </section>
                 </div>
+
           </li>
               <li class="span4">
             <div class="thumbnail thumbnail-1"> <img  src="img/service-2.jpg" alt="">
