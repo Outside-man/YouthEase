@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hziee.smvc.mapper.PictureMapper" >
+  <resultMap id="BaseResultMap" type="hziee.smvc.model.Picture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pic_name" property="picName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from s_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="hziee.smvc.model.Picture" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into s_picture (pic_name, user_id, add_time
+      )
+    values (#{picName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="hziee.smvc.model.Picture" >
+    update s_picture
+    set pic_name = #{picName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      add_time = #{addTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, pic_name, user_id, add_time
+    from s_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, pic_name, user_id, add_time
+    from s_picture
+  </select>
+</mapper>

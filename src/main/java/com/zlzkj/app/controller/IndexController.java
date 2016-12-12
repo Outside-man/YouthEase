@@ -25,7 +25,7 @@ public class IndexController extends BaseController{
 	public String index(Model model,HttpServletRequest request,HttpServletResponse response) {
 		return IndexController.index;
 	}
-	
-	
-	
+	public static String JumpTo(String s){
+		return root+"/"+s;
+	}
 }
