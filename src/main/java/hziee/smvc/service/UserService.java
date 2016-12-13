@@ -35,6 +35,9 @@ public class UserService  {
         insert(user);
         return user;
     }
+    public User getUser(Integer id ){
+       return  userMapper.selectByPrimaryKey(id);
+    }
     public String hashPassword(String s){
         String newPass = org.apache.commons.codec.digest.DigestUtils.md5Hex(s);
         return newPass;

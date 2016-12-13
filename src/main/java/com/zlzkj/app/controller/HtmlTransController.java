@@ -21,6 +21,9 @@ public class HtmlTransController {
         if(result.equals("emotion")){
             return "redirect:/getforum_emotion";
         }
+        if(result.equals("self_center")){
+            return "redirect:/self_center_p/self";
+        }
         return "/"+IndexController.root+"/"+result;
     }
 

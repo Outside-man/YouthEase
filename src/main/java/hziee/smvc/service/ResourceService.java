@@ -29,7 +29,9 @@ public class ResourceService {
     public PictureMapper pictureMapper;
     @Autowired
     public SqlRunner sqlRunner;
-    public String UploadFiles(MultipartFile file, HttpServletRequest request){
+    @Autowired
+    private PicService picService;
+    public String UploadIcon(MultipartFile file, HttpServletRequest request){
         if(!file.isEmpty()){
             System.out.println("hiiiii");
             Map m = UploadUtils.saveMultipartFile(file);
@@ -37,10 +39,16 @@ public class ResourceService {
             User user =(User)request.getSession().getAttribute("user");
             Integer userId =  user.getId();
             String picName = (String)m.get("saveName");
-            System.out.println("picName is "+picName);
             Picture  picture = new Picture();
             picture.setPicName(picName);
             picture.setUserId(userId);
+            Picture temp=null;
+            if(picService.getUserIcon(user)!=null){
+                temp = picService.getUserIcon(user);
+                picture.setId(temp.getId());
+                pictureMapper.updateByPrimaryKey(picture);
+                return picName;
+            }
             pictureMapper.insert(picture);
             return picName;
         }

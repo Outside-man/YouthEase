@@ -34,8 +34,8 @@ public class PicService {
         Picture picture=null;
         for(Row r:row){
             Integer picId = (Integer) r.get("id");
-            System.out.println(picId);
             picture =pictureMapper.selectByPrimaryKey(picId);
+            return picture;
         }
         return  picture;
     }
@@ -43,7 +43,7 @@ public class PicService {
        Picture picture  = getUserIcon(user);
         String picUrl=null;
         if(picture!=null)
-            picUrl  = getUserIcon(user).getPicName();
+            picUrl  = picture.getPicName();
         String iconUrl = UploadUtils.parseFileUrl(picUrl);
         return   iconUrl;
     }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -19,54 +20,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </article>
         <div class="clear"></div>
         <ul class="thumbnails thumbnails-1 list-services">
-              <li class="span4">
+            <li class="span4">
             <div class="thumbnail thumbnail-1"> <img  src="${iconUrl}" alt="">
+                <c:if test="${user.id==centerUser.id}">
                 <section> <a href="#" class="link-1"></a>
                       <form id=${user.id} action="uploads/userIcon" method="post" enctype="multipart/form-data">
                           照片：<input type="file" name="icon"/>
                           <button type="submit"  id="submit_btn"
                                   class="btn btn-primary btn-lg">&nbsp;上&nbsp;传&nbsp; </button>
                       </form>
-              </section>
+                </section>
+                </c:if>
                 </div>
+          </li>
 
-
-          </li>
-              <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-2.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
-              </section>
-                </div>
-          </li>
-              <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-3.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
-              </section>
-                </div>
-          </li>
-              <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-4.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
-              </section>
-                </div>
-          </li>
-              <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-5.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
-              </section>
-                </div>
-          </li>
-              <li class="span4">
-            <div class="thumbnail thumbnail-1"> <img  src="img/service-6.jpg" alt="">
-                  <section> <a href="#" class="link-1">At vero eos et accusamus et iusto </a>
-                <p>Deleniti atque corrupti quos dolores molestias excepturi sint occaecati cupiditate nonprovident similique sunt in culpa.</p>
-              </section>
-                </div>
-          </li>
             </ul>
       </div>
         </div>
