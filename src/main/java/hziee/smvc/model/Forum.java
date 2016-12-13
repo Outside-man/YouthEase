@@ -17,10 +17,7 @@ public class Forum {
 
     private Integer addTime;
 
-    @Override
-    public String toString() {
-        return title;
-    }
+    private Integer floors;
 
     public Integer getId() {
         return id;
@@ -84,5 +81,13 @@ public class Forum {
 
     public void setAddTime(Integer addTime) {
         this.addTime = addTime;
+    }
+
+    public Integer getFloors() {
+        return floors;
+    }
+
+    public void setFloors(Integer floors) {
+        this.floors = floors;
     }
 }

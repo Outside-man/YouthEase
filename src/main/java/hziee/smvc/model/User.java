@@ -14,7 +14,7 @@ public class User {
     private Integer authority;
 
     private Integer addTime;
-
+    public static final User DEFUALT  = new User();
     public Integer getId() {
         return id;
     }

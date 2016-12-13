@@ -56,7 +56,6 @@ public class PostService {
         }
         return forumList;
     }
-
     public List<Forum> getAllForum(){
         return forumMapper.selectAll();
     }

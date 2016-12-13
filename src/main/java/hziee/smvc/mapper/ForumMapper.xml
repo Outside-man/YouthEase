@@ -10,6 +10,7 @@
     <result column="addition_status" property="additionStatus" jdbcType="VARCHAR" />
     <result column="addition_id" property="additionId" jdbcType="INTEGER" />
     <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="floors" property="floors" jdbcType="INTEGER" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from s_forum
@@ -19,12 +20,12 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into s_forum (title, user_id, content,
-      types, addition_status, addition_id,
-      add_time)
-    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
-      #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER},
-      #{addTime,jdbcType=INTEGER})
+    insert into s_forum (title, user_id, content, 
+      types, addition_status, addition_id, 
+      add_time, floors)
+    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=INTEGER}, #{floors,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="hziee.smvc.model.Forum" >
     update s_forum
@@ -34,16 +35,19 @@
       types = #{types,jdbcType=VARCHAR},
       addition_status = #{additionStatus,jdbcType=VARCHAR},
       addition_id = #{additionId,jdbcType=INTEGER},
-      add_time = #{addTime,jdbcType=INTEGER}
+      add_time = #{addTime,jdbcType=INTEGER},
+      floors = #{floors,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, title, user_id, content, types, addition_status, addition_id, add_time
+    select id, title, user_id, content, types, addition_status, addition_id, add_time, 
+    floors
     from s_forum
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap" >
-    select id, title, user_id, content, types, addition_status, addition_id, add_time
+    select id, title, user_id, content, types, addition_status, addition_id, add_time, 
+    floors
     from s_forum
   </select>
 </mapper>
