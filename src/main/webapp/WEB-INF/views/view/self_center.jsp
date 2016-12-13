@@ -32,10 +32,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </section>
                 </c:if>
                 </div>
-          </li>
+            </li>
+        </ul>
 
-            </ul>
+
       </div>
+        <ul class="thumbnails thumbnails-1 list-services">
+    <div class="row">
+
+            <li class="span4">
+                <h5>用户ID= ${centerUser.id} </h5>
+            </li>
+    </div>
+        <div class="row">
+            <li class="span4">
+                <h5>用户名= ${centerUser.nuserName} </h5>
+            </li>
+        </div>
+        <div class="row">
+            <li class="span4">
+                <h5>用户邮箱= ${centerUser.email} </h5>
+            </li>
+        </div>
+        <div class="row">
+            <c:if test="${user.id==centerUser.id}">
+                <section> <a href="#" class="link-1"></a>
+                    <button type="button"  id="button_update"
+                            class="btn btn-primary btn-lg">&nbsp;更&nbsp;新&nbsp; </button>
+                    </form>
+                </section>
+            </c:if>
+            </div>
+        </ul>
         </div>
   </div>
     </div>
