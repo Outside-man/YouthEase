@@ -32,22 +32,23 @@
                 </div >
                 <div class="span10">
                 <ul>
-                <c:forEach items="${comments}" varStatus="i" var="item" >
+                <c:forEach items="${list}" varStatus="i" var="item" >
                     <ul>
                 <li>
                     <div class=row">
                     <article class="span8">
-                    <h5 > ${item.content} </h5>
-                    <a href="${item.userId}.user" class="btn btn-1">关于用户</a>
+                    <h5 > ${item.comment.content} </h5>
+                    <a href="self_center_p/${item.comment.userId}" class="btn btn-1">${item.username}</a>
                     </article>
-                    <h5 >---------------${item.floor}-层</h5>
+                    <h5 >---------------${item.comment.floor}-层</h5>
+                        <img src="${item.iconUrl}" width="100" height="100"/>
                     </div>
                 </li>
-
                     </ul>
                 </c:forEach>
                 </ul>
                 </div>
+
             <div class="row">
             <article class="span8">
                 <div class="inner-1">
@@ -63,9 +64,9 @@
                                 <h3>内容</h3>
                                 <textarea type="text" name="content" rows="20" style="width: 100%;">
                                 </textarea>
-                                <input type="hidden" name="forumId" value="${forum.id}"/>
+                                    <input type="hidden" name="forumId" value="${forum.id}"/>
                                     <input type="hidden" name="userId" value="${user.id}"/>
-                                    <input type="hidden" name="floor" value="${fn:length(comments)}"/>
+                                    <input type="hidden" name="floor" value="${fn:length(list)}"/>
                                 <button type="submit"  id="submit_btn" class="btn btn-primary btn-lg" style="float: right;">&nbsp;回&nbsp;贴&nbsp; </button>
                                 </div>
                             </li>
@@ -76,9 +77,7 @@
             </article>
             </div>
         </div>
-
     </div>
-
 </div>
 </div>
 <!--  footer  -->

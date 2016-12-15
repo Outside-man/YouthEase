@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <ul class="thumbnails thumbnails-1">
             <li class="span3">
                   <div class="thumbnail thumbnail-1">
-                <h3>焚烧坏情绪</h3>
+                <h3>${user}焚烧坏情绪</h3>
                 <img  src="img/blog-featured-01.jpg" alt="">
                 <section> 
                     <a href="#"><h3>At vero eos et accusamus et iusto </h3></a>
