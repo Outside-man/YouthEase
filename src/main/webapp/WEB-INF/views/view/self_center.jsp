@@ -16,7 +16,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="container">
           <div class="row">
         <article class="span12">
-              <h4>Services</h4>
+              <h4>头像</h4>
             </article>
         <div class="clear"></div>
         <ul class="thumbnails thumbnails-1 list-services">
@@ -59,12 +59,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <section> <a href="#" class="link-1"></a>
                     <button type="button"  id="button_update"
                             class="btn btn-primary btn-lg">&nbsp;更&nbsp;新&nbsp; </button>
-                    </form>
+                </section>
+
+            </c:if>
+            <c:if test="${user.authority==666}">
+                <section> <a href="#" class="link-1"></a>
+                    <button type="button"  id="button_manage"
+                            class="btn btn-primary btn-lg">&nbsp;管&nbsp;理&nbsp; </button>
                 </section>
             </c:if>
             </div>
         </ul>
         </div>
+
+          </ul>
+      </div>
   </div>
     </div>
 
