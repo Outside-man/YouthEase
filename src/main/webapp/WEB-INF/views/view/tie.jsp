@@ -59,7 +59,7 @@
                                 <div class="clear"></div>
                                 <div style="float: right;position: relative;top:18px;">
                                     <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
-                                    <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">${user.nuserName}</a></div>
+                                    <div class="name-author"><i class="icon-user icon-white"></i> <a href="self_center.html">${user.nuserName}</a></div>
                                 </div>
                                 <h3>内容</h3>
                                 <textarea type="text" name="content" rows="20" style="width: 100%;">

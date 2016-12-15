@@ -79,5 +79,20 @@ public class UserService  {
         }
 
     }
+    public User updateUser(User whichUser){
+        String hash;
+        User pastUserInfo  = userMapper.selectByPrimaryKey(whichUser.getId());
+        if(whichUser.getPasswordHash()!=null){
+            pastUserInfo.setPasswordHash(hashPassword(whichUser.getPasswordHash()));
+        }
+        if(whichUser.getNuserName()!=null){
+            pastUserInfo.setNuserName(whichUser.getNuserName());
+        }
+        if(whichUser.getRealName()!=null){
+            pastUserInfo.setRealName(whichUser.getRealName());
+        }
+        int id=userMapper.updateByPrimaryKey(pastUserInfo);
+        return userMapper.selectByPrimaryKey(id);
+    }
 
 }

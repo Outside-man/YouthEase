@@ -61,5 +61,11 @@ public class UserController {
             request.getSession().setAttribute("logininfo","logout");
             return IndexController.index;
     }
+    @RequestMapping("/update")
+        public String update(User user,HttpServletRequest request,HttpServletRequest response){
+                System.out.println(user);
+                userService.updateUser(user);
+        return "redirect:/self_center_p/self";
+        }
 
 }
