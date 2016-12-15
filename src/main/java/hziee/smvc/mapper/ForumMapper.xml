@@ -20,11 +20,11 @@
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into s_forum (title, user_id, content, 
-      types, addition_status, addition_id, 
+    insert into s_forum (title, user_id, content,
+      types, addition_status, addition_id,
       add_time, floors)
-    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER}, 
+    values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR},
+      #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER},
       #{addTime,jdbcType=INTEGER}, #{floors,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="hziee.smvc.model.Forum" >
@@ -40,7 +40,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, title, user_id, content, types, addition_status, addition_id, add_time, 
+    select id, title, user_id, content, types, addition_status, addition_id, add_time,
     floors
     from s_forum
     where id = #{id,jdbcType=INTEGER}

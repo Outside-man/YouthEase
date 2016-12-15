@@ -39,8 +39,7 @@ public class ForumTranserController extends BaseController{
         Forum  forum  = postService.getForumFromId(id);
         System.out.println("yup I am using this traditional way of debugging while not change to a advanced one:"+forum);
         httpServletRequest.getSession().setAttribute("forum", forum);
-        httpServletRequest.getSession().setAttribute("comments",commentService.GetCommentsOfForum(forum.getId()));
-
+        httpServletRequest.getSession().setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";
     }
 }

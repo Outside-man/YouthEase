@@ -26,7 +26,12 @@ public class PicService {
     
     
     public Picture getUserIcon(User user){
-        Integer  id = user.getId();
+        if(user!=null)
+            return getUserIcon(user.getId());
+        return null;
+
+    }
+    public Picture getUserIcon(Integer id){
         SQLBuilder sqlBuilder  = SQLBuilder.getSQLBuilder(Picture.class);
         String sqlex  = sqlBuilder.fields("id,pic_name,user_id").where("user_id=#{0}").selectSql();
         List<Row> row = sqlRunner.select(sqlex,id);
@@ -40,7 +45,12 @@ public class PicService {
         return  picture;
     }
     public String getIconUrl(User user){
-       Picture picture  = getUserIcon(user);
+        if(user!=null)
+            return  getIconUrl(user.getId());
+        return   null;
+    }
+    public String getIconUrl(Integer id){
+        Picture picture  = getUserIcon(id);
         String picUrl=null;
         if(picture!=null)
             picUrl  = picture.getPicName();
