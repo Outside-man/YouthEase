@@ -81,8 +81,8 @@
 
                     <c:if test="${user.authority==666}">
                         <section> <a href="#" class="link-1"></a>
-                            <button type="button"  id="button_manage"
-                                    class="btn btn-primary btn-lg">&nbsp;管&nbsp;理&nbsp; </button>
+                            <a href="admin/jump"><button type="button"  id="button_manage"
+                                    class="btn btn-primary btn-lg">&nbsp;管&nbsp;理&nbsp; </button></a>
                         </section>
                     </c:if>
 
