@@ -53,7 +53,7 @@ public class UserController {
             return "/"+IndexController.root+"/"+"register";
         request.getSession().setAttribute("user",reuser);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(reuser));
-        return "/"+IndexController.index;
+        return "redirect:/self_center_p/self";
     }
     @RequestMapping("/logout")
         public String Logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {

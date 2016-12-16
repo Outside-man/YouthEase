@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <td>未知</td>
           <td>${item.content}</td>
           <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="return del(${item.id})"><span class="icon-trash-o"></span> 删除</a> </div></td>
+          <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="del(${item.id})"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
       </c:forEach>
 
@@ -67,13 +67,14 @@ function del(id){
                   url:'http://localhost:8080/YouthEase/delete/contact',
                   type:'post',
                   data:{"deleteId":id},
-                  dataType:text,
+                  dataType: "text",
                    success:function(data){
-                      alert("删除成功");
-                    },
+                     location.reload()
+                   },
                     error:function(data){
                       alert("删除失败");
-                    }
+                    },
+
                 }
 
         )

@@ -30,14 +30,11 @@ public class ForumTranserController extends BaseController{
     }
     @RequestMapping("/*.tie")
     public String getText(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        System.out.println("A super servlet");
         String s =  httpServletRequest.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
         Integer id = Integer.parseInt(result);
-        System.out.println("see what comes out:"+id);
         Forum  forum  = postService.getForumFromId(id);
-        System.out.println("yup I am using this traditional way of debugging while not change to a advanced one:"+forum);
         httpServletRequest.setAttribute("forum", forum);
         httpServletRequest.setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";

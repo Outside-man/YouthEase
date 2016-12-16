@@ -18,6 +18,7 @@ public class HtmlTransController {
         System.out.println(s);
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
+
         if(result.equals("emotion")){
             return "redirect:/getforum_emotion";
         }
