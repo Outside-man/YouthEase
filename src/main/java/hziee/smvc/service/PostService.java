@@ -34,12 +34,29 @@ public class PostService {
         forum.setAdditionStatus(hehe+"  "+user.getNuserName()+ " "+user.getEmail());
         forumMapper.insert(forum);
     }
+
     public Forum  getForumFromId(Integer id){
         Forum forum = forumMapper.selectByPrimaryKey(id);
         if(forum==null){
             return null;
         }
         return  forum;
+    }
+    public List<Forum> GetUsersForum(Integer id){
+
+        SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Forum.class);
+        //  System.out.println("List washed");
+        String sql  = sqlBuilder.fields().where("user_id=#{0}").selectSql();
+        //  System.out.println("List washed");
+        List<Row> list = sqlRunner.select(sql,id);
+        List<Forum> forumList = new ArrayList<>();
+        // System.out.println("List washed");
+        for(Row r:list) {
+            Integer idd = (Integer) r.get("id");
+            Forum temp = forumMapper.selectByPrimaryKey(idd);
+            forumList.add(temp);
+        }
+        return forumList;
     }
     public List<Forum> GetTypesOfForum(String str){
         SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Forum.class);

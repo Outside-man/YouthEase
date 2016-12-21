@@ -35,7 +35,6 @@ public class ResourceService {
         if(!file.isEmpty()){
             System.out.println("hiiiii");
             Map m = UploadUtils.saveMultipartFile(file);
-            System.out.println();
             User user =(User)request.getSession().getAttribute("user");
             Integer userId =  user.getId();
             String picName = (String)m.get("saveName");

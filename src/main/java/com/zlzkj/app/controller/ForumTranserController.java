@@ -6,6 +6,7 @@ import hziee.smvc.model.Comment;
 import hziee.smvc.model.Forum;
 import hziee.smvc.service.CommentService;
 import hziee.smvc.service.PostService;
+import hziee.smvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class ForumTranserController extends BaseController{
     public PostService postService;
     @Autowired
     public CommentService commentService;
+    @Autowired
+    public UserService userService;
     @RequestMapping("/getforum_emotion")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         List list = postService.GetTypesOfForum("emotion");
@@ -36,6 +39,7 @@ public class ForumTranserController extends BaseController{
         Integer id = Integer.parseInt(result);
         Forum  forum  = postService.getForumFromId(id);
         httpServletRequest.setAttribute("forum", forum);
+        httpServletRequest.setAttribute("masteruser",userService.getUser(forum.getUserId()));
         httpServletRequest.setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";
     }

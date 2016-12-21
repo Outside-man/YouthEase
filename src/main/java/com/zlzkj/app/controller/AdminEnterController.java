@@ -38,6 +38,5 @@ public class AdminEnterController {
             request.setAttribute("list",contactService.getAllContact());
         }
         return "/"+IndexController.adminRoot+"/"+result;
-
     }
 }

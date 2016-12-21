@@ -26,9 +26,9 @@
             <div class="row ">
                 <div class="span12">
 
-                       <h2> ${forum.title} --- <h3> ${forum.additionStatus}</h3> </h2>
+                       <h2> ${forum.title} --- <h3> ${masteruser.nuserName}</h3> </h2>
+                    <a href="self_center_p/${masteruser.id}" class="btn btn-group-sm">${masteruser.nuserName}</a>
                         <h4>${forum.content}</h4>
-
                 </div >
                 <div class="span10">
                 <ul>

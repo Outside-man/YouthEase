@@ -9,32 +9,50 @@
 <html>
 <jsp:include page="../public/base.jsp"/>
 <div class="bg-content">
-
-    <!-- content -->
-    <script type="text/javascript">
-        var count=0;
-    function update_userdata(){
-
-        if(count==0){
-            document.getElementById('user_name').disabled = false;
-            document.getElementById("real_name").disabled=false;
-            document.getElementById("inputPassword").disabled=false;
-            count++;
-        }else{
-            if(document.getElementById("inputPassword").value!=null)
-                document.getElementById('data_form').submit();
-         count=0;
-        }
-    }
-    </script>
-
     <div id="content"><div class="ic"></div>
         <div class="container">
             <div class="row">
-                <article class="span8">
+
+
+                <article class="span8" style="float:right">
+                    <h4>我的帖子</h4>
+                    <div class="inner-1">
+                        <ul class="list-blog">
+                            beta-version
+                            <c:forEach items="${forum}" varStatus="i" var="item" >
+                                <li>
+                                    <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
+                                    <a href="${item.id}.tie" class="btn btn-1">Read This</a>
+                                </li>
+                            </c:forEach>
+
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <article class="span4">
                     <article class="span12">
-                        <h3 >个人资料</h3>
+                        <h3 >头像</h3>
                     </article>
+                    <div class="thumbnails thumbnails-1 ">
+                        <img  src="${iconUrl}" alt="" width="265"  >  </div>
+                    <div>
+                        <c:if test="${user.id==centerUser.id}">
+                            <section> <a href="#" class="link-1"></a>
+                                <form id="${user.id}" action="uploads/userIcon" method="post" enctype="multipart/form-data">
+                                    照片：<input type="file" name="icon"/>
+                                    <button type="submit"  id="submit_btn"
+                                            class="btn btn-primary btn-lg">&nbsp;上&nbsp;传&nbsp; </button>
+                                </form>
+                            </section>
+                        </c:if>
+                    </div>
+                </article>
+                <article class="span8" style="float:none;width: 300px;">
+                    <h3 >个人资料</h3>
                     <form id="data_form" action = "user/update">
                         <div class="control-group">
                             <label class="control-label" for="user_name">用户名：</label>
@@ -75,38 +93,81 @@
                                 </section>
                             </div>
                         </c:if>
+
                     </form>
 
 
-
+                    <c:if test="${user.id!=centerUser.id}">
+                        <div>
+                            <section>
+                                <form action="friend/add" method="post">
+                                <input type="hidden" name="targetId"  value="${centerUser.id}"/>
+                                <input type="hidden" name="sourceId" value="${user.id}">
+                                <button type="submit"  id="button_friend_request" onclick="update_userdata()"
+                                        class="btn btn-primary btn-lg">好友申请</button>
+                                </form>
+                            </section>
+                        </div>
+                    </c:if>
                     <c:if test="${user.authority==666}">
-                        <section> <a href="#" class="link-1"></a>
-                            <a href="admin/jump"><button type="button"  id="button_manage"
+                        <section> <a href="admin/index.html" class="link-1">
+
+
+
+                            <button type="submit"  id="button_manage"
                                     class="btn btn-primary btn-lg">&nbsp;管&nbsp;理&nbsp; </button></a>
+
                         </section>
                     </c:if>
 
                 </article>
 
-
                 <article class="span4">
-                    <article class="span12">
-                        <h3 >头像</h3>
-                    </article>
-                    <div class="thumbnails thumbnails-1 ">
-                        <img  src="${iconUrl}" alt="" width="265"  >  </div>
-                    <div>
-                        <c:if test="${user.id==centerUser.id}">
-                            <section> <a href="#" class="link-1"></a>
-                                <form id="${user.id}" action="uploads/userIcon" method="post" enctype="multipart/form-data">
-                                    照片：<input type="file" name="icon"/>
-                                    <button type="submit"  id="submit_btn"
-                                            class="btn btn-primary btn-lg">&nbsp;上&nbsp;传&nbsp; </button>
-                                </form>
-                            </section>
-                        </c:if>
+                    <h3 class="extra">我的易友</h3>
+                    <form id="search" action="" method="GET" accept-charset="utf-8" >
+                        <div class="clearfix">
+                            <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
+                            <a href="#" onClick="document.getElementById('search').submit()" class="btn btn-1">Search</a> </div>
+                    </form>
+                    <h3>最近联系</h3>
+                    <ul class="list extra extra1">
+                        <li><a href="#">隔壁老王</a></li>
+                        <li><a href="#">快递小张</a></li>
+                        <li><a href="#">程序员小沈</a></li>
+                    </ul>
+                    <h3>易友</h3>
+                    <div class="wrapper">
+                        <ul class="list extra2 list-pad ">
+                            <li><a href="#">沈小芸</a></li>
+                            <li><a href="#">殷小明</a></li>
+                            <li><a href="#">王老咸</a></li>
+                        </ul>
                     </div>
+                    <h3>消息</h3>
+                    <div class="wrapper">
+                        <ul class="list extra2 list-pad ">
+                    <c:forEach items="${messages}" varStatus="i" var="item" >
+                        <c:if test="${item.type=='friend_making'}">
+                                 <li>
+                                ${item.content}
+                                </li>
+                                <li>
+                                <section>
+                                    <button type="button"  id="agr${item.id}"
+                                            class="btn btn-primary btn-small">&nbsp;同&nbsp;意&nbsp; </button>
+                                        <button type="button"  id="ref${item.id}"
+                                                class="btn btn-primary btn-small">&nbsp;拒&nbsp;绝&nbsp; </button>
+                                </section>
+                                </li>
+                            </c:if>
+
+                    </c:forEach>
+                        </ul>
+                    </div>
+
                 </article>
+
+
 
 
 

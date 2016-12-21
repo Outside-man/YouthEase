@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <ul class="search">
         <li>
           <button type="button"  class="button border-green" id="checkall"><span class="icon-check"></span> 全选</button>
-          <button type="submit" class="button border-red"><span class="icon-trash-o"></span> 批量删除</button>
+          <button type="button" class="button border-red" onclick="DelSelect(-1)"><span class="icon-trash-o"></span> 批量删除</button>
         </li>
       </ul>
     </div>
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </tr>
       <c:forEach items="${list}" varStatus="i" var="item" >
         <tr>
-          <td><input type="checkbox" name="id[]" value="1" />
+          <td><input type="checkbox" id=${item.id } name="id[]" value="1" />
               ${item.id}</td>
           <td>${item.name}</td>
           <td>${item.phone}</td>
@@ -51,7 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
            <td>未知</td>
           <td>${item.content}</td>
           <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="del(${item.id})"><span class="icon-trash-o"></span> 删除</a> </div></td>
+          <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="DelSelect(${item.id})"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
       </c:forEach>
 
@@ -60,27 +60,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </div>
 </form>
 <script type="text/javascript">
-
-function del(id){
-	if(confirm("您确定要删除吗?")){
-		$.ajax({
-                  url:'http://localhost:8080/YouthEase/delete/contact',
-                  type:'post',
-                  data:{"deleteId":id},
-                  dataType: "text",
-                   success:function(data){
-                     location.reload()
-                   },
-                    error:function(data){
-                      alert("删除失败");
-                    },
-
-                }
-
-        )
-	}
-}
-
 $("#checkall").click(function(){ 
   $("input[name='id[]']").each(function(){
 	  if (this.checked) {
@@ -92,17 +71,46 @@ $("#checkall").click(function(){
   });
 })
 
-function DelSelect(){
-	var Checkbox=false;
-	 $("input[name='id[]']").each(function(){
-	  if (this.checked==true) {		
-		Checkbox=true;	
-	  }
-	});
+function DelSelect(id){
+    var Checkbox=false;
+    var array = new Array();
+
+    if(id!=-1){
+        array.push(id);
+        Checkbox=true;
+
+    }else{
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+                var key=this.id;
+                array.push(key);
+                alert(key);
+            }
+        });
+    }
+
 	if (Checkbox){
-		var t=confirm("您确认要删除选中的内容吗？");
-		if (t==false) return false; 		
-	}
+        var t=confirm("您确认要删除选中的内容吗？");
+        if (t==false) return false;
+        else{
+            $.ajax({
+                url:'http://localhost:8080/YouthEase/delete/contact',
+                type:'post',
+                data: "DeleteList=" + array,
+                dataType: "json",
+                success:function(data){
+                    location.reload()
+                },
+                error:function(data){
+                    alert("删除失败");
+                },
+
+            })
+        }
+
+
+    }
 	else{
 		alert("请选择您要删除的内容!");
 		return false;
