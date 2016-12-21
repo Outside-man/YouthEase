@@ -63,4 +63,7 @@ public class MessageService {
         }
         return true;
     }
+    public int DeleteMessage(Integer id){
+        return messageMapper.deleteByPrimaryKey(id);
+    }
 }

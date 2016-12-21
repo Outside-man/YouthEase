@@ -66,7 +66,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <table class="table table-hover text-center">
       <tr>
         <th width="100" style="text-align:left; padding-left:20px;">ID</th>
-        <th width="10%">排序</th>
         <th>图片</th>
         <th>名称</th>
         <th>属性</th>
@@ -75,112 +74,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <th width="310">操作</th>
       </tr>
       <volist name="list" id="vo">
+          <c:forEach items="${list}" varStatus="i" var="item" >
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
            1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
+          <td width="10%"><img src="images/y.jpg" alt="" width="50" height="50" /></td>
+          <td>${item.title}</td>
+          <td><font color="#00CC99">${item.types}</font></td>
           <td>产品分类</td>
           <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
+            <td><div class="button-group"> <a class="button border-main"  href="admin/tieX${item.id}.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" onclick="DelSelect(${item.id})"><span class="icon-trash-o"
+            ></span> 删除</a> </div></td>
         </tr>
-   		 <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
-          <td>产品分类</td>
-          <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
-          <td>产品分类</td>
-          <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
-          <td>产品分类</td>
-          <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
-          <td>产品分类</td>
-          <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
-         <tr>
-          <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
-          <td><input type="text" name="sort[1]" value="1" style="width:50px; text-align:center; border:1px solid #ddd; padding:7px 0;" /></td>
-          <td width="10%"><img src="images/11.jpg" alt="" width="70" height="50" /></td>
-          <td>这是一套MUI后台精美管理系统，感谢您的支持</td>
-          <td><font color="#00CC99">首页</font></td>
-          <td>产品分类</td>
-          <td>2016-07-01</td>
-          <td><div class="button-group"> <a class="button border-main" href="add.html"><span class="icon-edit"></span> 修改</a> <a class="button border-red" href="javascript:void(0)" onclick="return del(1,1,1)"><span class="icon-trash-o"></span> 删除</a> </div></td>
-        </tr>
+              </c:forEach>
       <tr>
-        <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
-          全选 </td>
-        <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect()"> 删除</a> <a href="javascript:void(0)" style="padding:5px 15px; margin:0 10px;" class="button border-blue icon-edit" onclick="sorts()"> 排序</a> 操作：
-          <select name="ishome" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeishome(this)">
-            <option value="">首页</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
-          </select>
-          <select name="isvouch" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeisvouch(this)">
-            <option value="">推荐</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
-          </select>
-          <select name="istop" style="padding:5px 15px; border:1px solid #ddd;" onchange="changeistop(this)">
-            <option value="">置顶</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
-          </select>
-          &nbsp;&nbsp;&nbsp;
-          
-          移动到：
-          <select name="movecid" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecate(this)">
-            <option value="">请选择分类</option>
-            <option value="">产品分类</option>
-            <option value="">产品分类</option>
-            <option value="">产品分类</option>
-            <option value="">产品分类</option>
-          </select>
-          <select name="copynum" style="padding:5px 15px; border:1px solid #ddd;" onchange="changecopy(this)">
-            <option value="">请选择复制</option>
-            <option value="5">复制5条</option>
-            <option value="10">复制10条</option>
-            <option value="15">复制15条</option>
-            <option value="20">复制20条</option>
-          </select></td>
       </tr>
-      <tr>
-        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
-      </tr>
+      </volist>
     </table>
   </div>
 </form>
@@ -211,22 +120,50 @@ $("#checkall").click(function(){
 })
 
 //批量删除
-function DelSelect(){
-	var Checkbox=false;
-	 $("input[name='id[]']").each(function(){
-	  if (this.checked==true) {		
-		Checkbox=true;	
-	  }
-	});
-	if (Checkbox){
-		var t=confirm("您确认要删除选中的内容吗？");
-		if (t==false) return false;		
-		$("#listform").submit();		
-	}
-	else{
-		alert("请选择您要删除的内容!");
-		return false;
-	}
+function DelSelect(id){
+    var Checkbox=false;
+    var array = new Array();
+
+    if(id!=-1){
+        array.push(id);
+        Checkbox=true;
+
+    }else{
+        $("input[name='id[]']").each(function(){
+            if (this.checked==true) {
+                Checkbox=true;
+                var key=this.id;
+                array.push(key);
+                alert(key);
+            }
+        });
+    }
+
+    if (Checkbox){
+        var t=confirm("您确认要删除选中的内容吗？");
+        if (t==false) return false;
+        else{
+            $.ajax({
+                url:'http://localhost:8080/YouthEase/delete/forum',
+                type:'post',
+                data: "DeleteList=" + array,
+                dataType: "json",
+                success:function(data){
+                    location.reload()
+                },
+                error:function(data){
+                    alert("删除失败");
+                },
+
+            })
+        }
+
+
+    }
+    else{
+        alert("请选择您要删除的内容!");
+        return false;
+    }
 }
 
 //批量排序

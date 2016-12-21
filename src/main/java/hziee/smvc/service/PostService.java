@@ -58,6 +58,9 @@ public class PostService {
         }
         return forumList;
     }
+    public Integer DeleteForum(Integer id){
+        return forumMapper.deleteByPrimaryKey(id);
+    }
     public List<Forum> GetTypesOfForum(String str){
         SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Forum.class);
       //  System.out.println("List washed");

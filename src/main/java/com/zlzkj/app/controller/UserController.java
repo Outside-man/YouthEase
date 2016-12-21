@@ -42,8 +42,11 @@ public class UserController {
         if(userService.UserExisted(user.getEmail())){
             return "/"+ IndexController.index;
         }
+        User operator = (User)request.getSession().getAttribute("user");
         userService.NewUser(user);
+        if(operator==null)
         return "/"+IndexController.index;
+        else return "redirect:/admin/rank.html";
     }
     @RequestMapping("/login")
     public String Login(User user,HttpServletRequest request,HttpServletResponse response){
@@ -63,9 +66,13 @@ public class UserController {
     }
     @RequestMapping("/update")
         public String update(User user,HttpServletRequest request,HttpServletRequest response){
-                System.out.println(user);
+                User operator = (User)request.getSession().getAttribute("user");
+                user.getId();
                 userService.updateUser(user);
-        return "redirect:/self_center_p/self";
+                if(user.getId().equals(operator.getId()))
+            return "redirect:/self_center_p/self";
+        else
+            return "redirect:/admin/rank.html";
         }
 
 }

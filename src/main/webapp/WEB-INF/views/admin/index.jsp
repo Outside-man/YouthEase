@@ -29,18 +29,14 @@
   <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
   <h2><span class="icon-user"></span>基本设置</h2>
   <ul style="display:block">
-    <li><a href="admin/info.html" target="right"><span class="icon-caret-right"></span>网站设置</a></li>
-    <li><a href="admin/rank.html" target="right"><span class="icon-caret-right"></span>权限设置</a></li>
     <li><a href="admin/notice.html" target="right"><span class="icon-caret-right"></span>发布公告</a></li>
-    <li><a href="admin/slider.html" target="right"><span class="icon-caret-right"></span>首页轮播</a></li>
     <li><a href="admin/feedback.html" target="right"><span class="icon-caret-right"></span>反馈管理</a></li>
-    <li><a href="admin/column.html" target="right"><span class="icon-caret-right"></span>栏目管理</a></li>
   </ul>   
   <h2><span class="icon-pencil-square-o"></span>栏目管理</h2>
   <ul>
+      <li><a href="admin/rank.html" target="right"><span class="icon-caret-right"></span>用户设置</a></li>
     <li><a href="admin/list.html" target="right"><span class="icon-caret-right"></span>内容管理</a></li>
     <li><a href="admin/add.html" target="right"><span class="icon-caret-right"></span>增加内容</a></li>
-    <li><a href="admin/cate.html" target="right"><span class="icon-caret-right"></span>分类管理</a></li>
   </ul>  
 </div>
 <script type="text/javascript">

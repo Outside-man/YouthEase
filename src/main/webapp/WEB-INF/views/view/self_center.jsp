@@ -8,6 +8,79 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <jsp:include page="../public/base.jsp"/>
+<script type="text/javascript">
+    var count=0;
+    function update_userdata(){
+        if(count==0){
+            document.getElementById('user_name').disabled = false;
+            document.getElementById("real_name").disabled=false;
+            document.getElementById("inputPassword").disabled=false;
+            count++;
+        }else{
+            if(document.getElementById("inputPassword").value!=null)
+                document.getElementById('data_form').submit();
+            count=0;
+        }
+    }
+    function agre(id1,id2,id3){
+        var array = new Array();
+        array.push(id1);
+        array.push(id2);
+        array.push(id3);
+        $.ajax({
+            url:'http://localhost:8080/YouthEase/friend/agr',
+            type:'post',
+            data: "FriendPair=" + array,
+            dataType: "json",
+            success:function(data){
+                $("div #friend-list").html(data);
+                $("div #friend_make").html(data);
+                $("div #message-box").html(data);
+            },
+            error:function(data){
+                alert("添加失败");
+            },
+
+        })
+    }
+    function del(id1,id2){
+        var array = new Array();
+        array.push(id1);
+        array.push(id2);
+        $.ajax({
+            url:'http://localhost:8080/YouthEase/friend/del',
+            type:'post',
+            data: "FriendPair=" + array,
+            dataType: "json",
+            success:function(data){
+                $("div #friend-list").html(data);
+                $("div #friend_make").html(data);
+                $("div #message-box").html(data);
+            },
+            error:function(data){
+                alert("删除失败");
+            },
+
+        })
+    }
+    function disag(id){
+        $.ajax({
+            url:'http://localhost:8080/YouthEase/message/del_friend_request',
+            type:'post',
+            data: "msgid=" + id,
+            dataType: "json",
+            success:function(data){
+                $("div #message-box").html(data);
+
+            },
+            error:function(data){
+                alert("拒绝失败");
+            },
+
+        })
+    }
+</script>
+
 <div class="bg-content">
     <div id="content"><div class="ic"></div>
         <div class="container">
@@ -98,13 +171,20 @@
 
 
                     <c:if test="${user.id!=centerUser.id}">
-                        <div>
+                        <div id="friend_make">
                             <section>
-                                <form action="friend/add" method="post">
-                                <input type="hidden" name="targetId"  value="${centerUser.id}"/>
-                                <input type="hidden" name="sourceId" value="${user.id}">
-                                <button type="submit"  id="button_friend_request" onclick="update_userdata()"
-                                        class="btn btn-primary btn-lg">好友申请</button>
+
+                                    <c:if test="${befriend==false}">
+                                        <form action="friend/add" method="post">
+                                            <input type="hidden" name="targetId"  value="${centerUser.id}"/>
+                                            <input type="hidden" name="sourceId" value="${user.id}">
+                                        <button type="submit"  id="button_friend_request" onclick=""
+                                            class="btn btn-primary btn-lg">好友申请</button>
+                                    </c:if>
+                                    <c:if test="${befriend==true}">
+                                        <button type="button"  id="button_friend_dequest" onclick="del(${centerUser.id},${user.id})"
+                                                class="btn btn-primary btn-lg">删除好友</button>
+                                    </c:if>
                                 </form>
                             </section>
                         </div>
@@ -136,32 +216,32 @@
                         <li><a href="#">程序员小沈</a></li>
                     </ul>
                     <h3>易友</h3>
-                    <div class="wrapper">
+                    <div id="friend-list" class="wrapper">
                         <ul class="list extra2 list-pad ">
-                            <li><a href="#">沈小芸</a></li>
-                            <li><a href="#">殷小明</a></li>
-                            <li><a href="#">王老咸</a></li>
+                            <c:forEach items="${friends}" varStatus="i" var="item" >
+                                <li><a href="self_center_p/${item.id}"> ${item.nuserName} </a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                     <h3>消息</h3>
-                    <div class="wrapper">
+                    <div id="message-box" class="wrapper">
                         <ul class="list extra2 list-pad ">
-                    <c:forEach items="${messages}" varStatus="i" var="item" >
-                        <c:if test="${item.type=='friend_making'}">
-                                 <li>
-                                ${item.content}
-                                </li>
-                                <li>
-                                <section>
-                                    <button type="button"  id="agr${item.id}"
-                                            class="btn btn-primary btn-small">&nbsp;同&nbsp;意&nbsp; </button>
-                                        <button type="button"  id="ref${item.id}"
-                                                class="btn btn-primary btn-small">&nbsp;拒&nbsp;绝&nbsp; </button>
-                                </section>
-                                </li>
-                            </c:if>
+                            <c:forEach items="${messages}" varStatus="i" var="item" >
+                                <c:if test="${item.type=='friend_making'}">
+                                    <li>
+                                            ${item.content}
+                                    </li>
+                                    <li>
+                                        <section>
+                                            <button type="button"  id="agr${item.id}"
+                                                    class="btn btn-primary btn-small" onclick="agre(${item.targetId},${item.sourceId},${item.id} )">&nbsp;同&nbsp;意&nbsp; </button>
+                                            <button type="button"  id="ref${item.id}"
+                                                    class="btn btn-primary btn-small" onclick="disag(${item.id})">&nbsp;拒&nbsp;绝&nbsp; </button>
+                                        </section>
+                                    </li>
+                                </c:if>
 
-                    </c:forEach>
+                            </c:forEach>
                         </ul>
                     </div>
 

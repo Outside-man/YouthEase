@@ -1,4 +1,5 @@
 package hziee.smvc.service;
+import java.util.ArrayList;
 import  java.util.List;
 
 import com.zlzkj.core.mybatis.SqlRunner;
@@ -59,6 +60,9 @@ public class UserService  {
         if(selectUserIdFromEmail(email)==FIND_FAILED) return false;
         return true;
     }
+    public List<User> GetAllUser(){
+        return userMapper.selectAll();
+    }
     public User findByID(Integer id){
         return (User)userMapper.selectByPrimaryKey(id);
     }
@@ -80,8 +84,9 @@ public class UserService  {
 
     }
     public User updateUser(User whichUser){
-        String hash;
+        String hash=null;
         User pastUserInfo  = userMapper.selectByPrimaryKey(whichUser.getId());
+        System.out.println(whichUser.getId());
         if(whichUser.getPasswordHash()!=null){
             pastUserInfo.setPasswordHash(hashPassword(whichUser.getPasswordHash()));
         }
@@ -91,8 +96,34 @@ public class UserService  {
         if(whichUser.getRealName()!=null){
             pastUserInfo.setRealName(whichUser.getRealName());
         }
+        if(whichUser.getEmail()!=null){
+            pastUserInfo.setEmail(whichUser.getEmail());
+        }
+        if(whichUser.getAuthority()!=null){
+            pastUserInfo.setAuthority(whichUser.getAuthority());
+        }
         int id=userMapper.updateByPrimaryKey(pastUserInfo);
         return userMapper.selectByPrimaryKey(id);
+    }
+    public List<User> GetMatchedUser(String match){
+        SQLBuilder sqlBuilder  = SQLBuilder.getSQLBuilder(User.class);
+        String sqlex= sqlBuilder.fields("id,email").where("email=#{0} or nuser_name=#{0}").selectSql();
+        List<Row> list = sqlRunner.select(sqlex,match);
+        List<User> users = new ArrayList<>();
+        for(Row r:list){
+            Integer uid = (Integer)r.get("id");
+            User temp  = userMapper.selectByPrimaryKey(uid);
+            if(!users.contains(temp)){
+                users.add(temp);
+            }
+        }
+        Integer id=null;
+        try{
+            id=Integer.parseInt(match);
+            users.add(userMapper.selectByPrimaryKey(id));
+        }catch (Exception e){
+        }
+        return users;
     }
 
 }

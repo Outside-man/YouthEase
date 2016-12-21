@@ -2,6 +2,8 @@ package com.zlzkj.app.controller;
 
 import hziee.smvc.model.User;
 import hziee.smvc.service.ContactService;
+import hziee.smvc.service.PostService;
+import hziee.smvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminEnterController {
     @Autowired
     private ContactService contactService;
+    @Autowired
+    private  UserService userService;
+    @Autowired
+    private PostService postService;
     @RequestMapping("/login")
     public String AdminLogin(User user, HttpServletRequest request, HttpServletResponse response){
         return  null;
@@ -31,12 +37,32 @@ public class AdminEnterController {
     }
     @RequestMapping("/*.html")
     public String TransPage(HttpServletRequest request,HttpServletResponse response){
+
         String s = request.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
         if(result.equals("feedback")){
             request.setAttribute("list",contactService.getAllContact());
+            return "/"+IndexController.adminRoot+"/"+result;
         }
+        if(result.equals("rank")){
+            request.setAttribute("list", userService.GetAllUser());
+            return "/"+IndexController.adminRoot+"/"+result;
+        }
+        if(result.equals("list")){
+            request.setAttribute("list",postService.getAllForum());
+            return "/"+IndexController.adminRoot+"/"+result;
+        }
+        String repart[] = result.split("[X]");
+        System.out.println(repart.length);
+        if(repart.length==2){
+            if(repart[0].equals("updateuser")){
+                Integer id = Integer.parseInt(repart[1]);
+                request.setAttribute("u_user",userService.getUser(id));
+            }
+            return "/"+IndexController.adminRoot+"/"+repart[0];
+        }
+
         return "/"+IndexController.adminRoot+"/"+result;
     }
 }
