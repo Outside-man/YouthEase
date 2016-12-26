@@ -30,6 +30,6 @@ public class UploadController {
         String filePath = resourceService.UploadIcon(file,request);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(user));
         System.out.println(filePath);
-        return IndexController.JumpTo("self_center");
+       return "redirect:/self_center_p/self";
     }
 }

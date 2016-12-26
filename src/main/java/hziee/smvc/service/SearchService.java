@@ -23,33 +23,22 @@ public class SearchService {
     private PageContentService pageContentService;
     @Autowired
     private PageService pageService;
-    public List SearchServices(String s, Class<?> types){
-        String part[] =  s.split("[.|/]");
-        String result = part[part.length - 2];
-        String resultPart[]= result.split("[_]");
-        ///地址错误
+    public List SearchServices(String resultPart[], Class<?> types){
         if(resultPart.length>3){
             return null;
         }
         String condition =  resultPart[1];
         Integer page = Integer.parseInt(resultPart[2]);
         List list= pageContentService.getPagedContent(page,types,condition);
-        String parts[]=condition.split("[|]");
         return list;
     }
-    public String[] GetKeywords(String url){
-        String part[] =  url.split("[.|/]");
-        String result = part[part.length - 2];
-        String resultPart[]= result.split("[_]");
+    public String[] GetKeywords(String resultPart[]){
         String condition =  resultPart[1];
         String results[] =  condition.split("[=]");
         System.out.println("result size"+results.length);
         return results;
     }
-    public Class<?> GetSearchedContetType(String url){
-        String part[] =  url.split("[.|/]");
-        String result = part[part.length - 2];
-        String resultPart[]= result.split("[_]");
+    public Class<?> GetSearchedContentType(String resultPart[]){
         String type =  resultPart[0];
         if(type.equals("user")){
             return User.class;

@@ -25,11 +25,14 @@ public class ForumTranserController extends BaseController{
     public CommentService commentService;
     @Autowired
     public UserService userService;
-    @RequestMapping("/getforum_emotion")
+    @RequestMapping("/*.forum")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        List list = postService.GetTypesOfForum("emotion");
+        String s =  httpServletRequest.getRequestURI();
+        String part[] =  s.split("[.|/]");
+        String result = part[part.length - 2];
+        List list = postService.GetTypesOfForum(result);
         httpServletRequest.getSession().setAttribute("forum", list);
-        return "/" + IndexController.root + "/" + "emotion";
+        return "/" + IndexController.root + "/" + result;
     }
     @RequestMapping("/*.tie")
     public String getText(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){

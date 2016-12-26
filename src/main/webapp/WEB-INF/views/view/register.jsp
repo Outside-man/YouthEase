@@ -6,44 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    <title>College Art | 注册</title>
-  <meta charset="utf-8">
-  <link rel="icon" href="http://dzyngiri.com/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="http://dzyngiri.com/favicon.png" type="image/x-icon" />
-    <meta name="description" content="Codester is a free responsive Bootstrap template by Dzyngiri">
-    <meta name="keywords" content="free, template, bootstrap, responsive">
-    <meta name="author" content="Inbetwin Networks">  
-  <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="css/touchTouch.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="css/kwicks-slider.css" type="text/css" media="screen">
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
-
-<style type="text/css">
-.form-group {margin-bottom: 20px;}
-.form-group.space {padding-top: 15px; border-top: 1px #FFF dotted;}
-.form-group img {margin-top: 1px; height: 32px; vertical-align: top;}
-.m {cursor: pointer;}
-</style>
-
-
-
-
-
-  <script type="text/javascript" src="js/jquery.js"></script>
-    <script type="text/javascript" src="js/superfish.js"></script>
-  <script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
-  <script type="text/javascript" src="js/jquery.kwicks-1.5.1.js"></script>
-  <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-  <script type="text/javascript" src="js/jquery.cookie.js"></script>    
-  <script type="text/javascript" src="js/touchTouch.jquery.js"></script>
-  <script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");} </script>
-
-
-
+<jsp:include page="../public/base.jsp"/>
   <script>    
      jQuery(window).load(function() { 
      $x = $(window).width();    
@@ -128,35 +91,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
    <div class="spinner"></div> 
 <!-- header start -->
-<header>
-      <div class="container clearfix">
-    <div class="row">
-          <div class="span12">
-        <div class="navbar navbar_">
-              <div class="container">
-            <h1 class="brand brand_"><a href="index.html"><img alt="" src="img/logo.png"> </a></h1>
-            <a class="btn btn-navbar btn-navbar_" data-toggle="collapse" data-target=".nav-collapse_">Menu <span class="icon-bar"></span> </a>
-            <div class="nav-collapse nav-collapse_  collapse">
-                  <ul class="nav sf-menu">
-                <li class="active"><a href="index.html">首页</a></li>
-                <li class="sub-menu"><a href="login.html">帖子汇总&nbsp;</a>
-                      <ul>
-                    <li><a href="emotion.html">感情帖</a></li>
-                <li><a href="trade.html">交易帖</a></li>
-                <li><a href="mix.html">杂&nbsp;帖</a></li>
-                  </ul>
-                    </li>
-                <li><a href="work.html">作品栈</a></li>
-                <li><a href="contact.html">联系我们</a></li>
-                <li><h3><a href="locate.html">杭州</a></h3></li>
-              </ul>
-                </div>
-          </div>
-            </div>
-      </div>
-        </div>
-  </div>
-    </header>
 <div class="bg-content">
   
       

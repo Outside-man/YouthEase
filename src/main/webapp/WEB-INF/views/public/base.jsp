@@ -88,21 +88,24 @@
                                     <li class="active"><a href="index.html">首页</a></li>
                                     <li class="sub-menu"><a href="#">帖子汇总&nbsp;</a>
                                         <ul>
-                                            <li><a href="emotion.html">感情帖</a></li>
-                                            <li><a href="trade.html">交易帖</a></li>
-                                            <li><a href="redirect/mix">杂&nbsp;帖</a></li>
+                                            <li><a href="emotion.forum">感情帖</a></li>
+                                            <li><a href="trade.forum">交易帖</a></li>
+                                            <li><a href="mix.forum">杂&nbsp;帖</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="work.html">作品栈</a></li>
-                                    <% if(request.getSession().getAttribute("user")==null) {
-                                    %>
+                               <c:choose>
+
+                                    <c:when test="${empty user}">
                                     <li class="sub-menu"><a href="redirect/login">登&nbsp;录</a>
                                         <ul>
                                             <li><a href="register.html">注册</a></li> </ul>
-                                                <%}else{%>
+                                        </c:when>
+                                    <c:otherwise>
                                     <li class="sub-menu"><a href="self_center.html">个人中心</a>
                                         <ul><a href="user/logout">登出</a></ul>
-                                        <%}%>
+                                    </c:otherwise>
+                                    </c:choose>
                                     </li>
                                     <li><a href="redirect/contact">联系我们</a></li>
                                     <li><h3><a href="redirect/locate">杭州</a></h3></li>

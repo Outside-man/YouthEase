@@ -215,9 +215,6 @@
                     </form>
                     <h3>最近联系</h3>
                     <ul class="list extra extra1">
-                        <li><a href="#">隔壁老王</a></li>
-                        <li><a href="#">快递小张</a></li>
-                        <li><a href="#">程序员小沈</a></li>
                     </ul>
                     <h3>易友</h3>
                     <div id="friend-list" class="wrapper">

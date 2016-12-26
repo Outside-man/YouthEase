@@ -34,6 +34,17 @@ public class PostController {
         postService.AddNewForum(forum,user);
        return "redirect:/getforum_emotion";
     }
+    @RequestMapping("/post_forum_admin")
+    public String postTextAdmin(Forum forum, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+        System.out.println(forum);
+        User user = (User) httpServletRequest.getSession().getAttribute("user");
+        if(user==null){
+            user = new User();
+        }
+        //    return "/"+IndexController.root+"/"+"login";
+        postService.AddNewForum(forum,user);
+        return "redirect:/admin/list_1.html";
+    }
     @RequestMapping("/post_comment")
     public String postComment(Comment comment, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
         System.out.println("comment userId is "+comment.getUserId());
