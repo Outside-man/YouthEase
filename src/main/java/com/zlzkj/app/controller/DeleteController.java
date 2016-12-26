@@ -1,6 +1,5 @@
 package com.zlzkj.app.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.zlzkj.core.base.BaseController;
 import hziee.smvc.model.User;
 import hziee.smvc.service.ContactService;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import java.util.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

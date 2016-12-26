@@ -17,11 +17,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/responsive.css" type="text/css" media="screen">
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+      <link rel="stylesheet" type="text/css" href="dist/css/wangEditor.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/superfish.js"></script>
 	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="js/jquery.cookie.js"></script>   
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+      <script type="text/javascript" src="dist/js/lib/jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="dist/js/wangEditor.min.js"></script>
     
 	<script type="text/javascript">if($(window).width()>1024){document.write("<"+"script src='js/jquery.preloader.js'></"+"script>");}	</script>
 	<script>		
@@ -113,9 +116,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">Admin</a></div>
                 </div>    
               <h3>内容</h3>
-              <textarea type="text" name="content" rows="20" style="width: 100%;"
-              > 
-              </textarea>
+                <script type="text/javascript">
+                    $(function () {
+                        var editor = new wangEditor('div1');
+                        editor.create();
+                    });
+                </script>
                 <button type="submit"  id="submit_btn"
                         class="btn btn-primary btn-lg" style="float: right;">&nbsp;发&nbsp;贴&nbsp; </button>
             </li>

@@ -24,29 +24,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="panel-head"><strong class="icon-reorder"> 内容列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
-        <li> <a class="button border-main icon-plus-square-o" href="add.html"> 添加内容</a> </li>
-        <li>搜索：</li>
-        <li>首页
-          <select name="s_ishome" class="input" onchange="changesearch()" style="width:60px; line-height:17px; display:inline-block">
-            <option value="">选择</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
+        <li> <a class="button border-main icon-plus-square-o" href="admin/add.html"> 添加内容</a> </li>
+        <form action="search/user">
+          <select name="types" class="input w50">
+            <option value="email">名称</option>
+            <option value="id">id</option>
+            <option value="user_id">发表用户</option>
           </select>
-          &nbsp;&nbsp;
-          推荐
-          <select name="s_isvouch" class="input" onchange="changesearch()"  style="width:60px; line-height:17px;display:inline-block">
-            <option value="">选择</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
-          </select>
-          &nbsp;&nbsp;
-          置顶
-          <select name="s_istop" class="input" onchange="changesearch()"  style="width:60px; line-height:17px;display:inline-block">
-            <option value="">选择</option>
-            <option value="1">是</option>
-            <option value="0">否</option>
-          </select>
-        </li>
+          <li>搜索：</li>
+          <li>
+            <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style = "width:250px; line-height:17px;display:inline-block" >
+            <button type="submit" class="button border-main icon-search" >搜索</button>
+        </form>
         <if condition="$iscid eq 1">
           <li>
             <select name="cid" class="input" style="width:200px; line-height:17px;" onchange="changesearch()">
@@ -87,9 +76,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             ></span> 删除</a> </div></td>
         </tr>
               </c:forEach>
+
       <tr>
       </tr>
       </volist>
+
+      <td colspan="8"><div class="pagelist"> <c:forEach var="i"  begin="1" end="${pages}" > </span><a href="admin/list_${i}.html">${i}</a></c:forEach> </div></td>
     </table>
   </div>
 </form>

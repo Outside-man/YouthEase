@@ -1,6 +1,7 @@
 package com.zlzkj.app.controller;
 
 import com.zlzkj.core.base.BaseController;
+import hziee.smvc.model.Message;
 import hziee.smvc.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,8 @@ public class MessageController extends BaseController {
     @RequestMapping("/del_friend_request")
     @ResponseBody
     public String DelFriendRequest(@RequestParam("msgid")String id, HttpServletResponse response){
+        Message thismesaage= messageService.GetMessage(Integer.parseInt(id));
         messageService.DeleteMessage(Integer.parseInt(id));
-        return ajaxReturn(response,null);
+        return ajaxReturn(response,messageService.GetUsersMessage(thismesaage.getTargetId()));
     }
 }

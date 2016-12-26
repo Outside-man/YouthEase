@@ -29,6 +29,9 @@ public class MessageService {
         int i=messageMapper.insert(message);
         return messageMapper.selectByPrimaryKey(i);
     }
+    public Message GetMessage(Integer id){
+        return messageMapper.selectByPrimaryKey(id);
+    }
     public Message NewMessage(Message message){
         Integer newId= null;
         if(message.getType()==null||message.getType().equals(""))

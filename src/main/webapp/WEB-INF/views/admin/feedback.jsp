@@ -54,8 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <td><div class="button-group"> <a class="button border-red" href="javascript:void(0)" onclick="DelSelect(${item.id})"><span class="icon-trash-o"></span> 删除</a> </div></td>
         </tr>
       </c:forEach>
-
-
+      <td colspan="8"><div class="pagelist"> <c:forEach var="i"  begin="1" end="${pages}" > </span><a href="admin/feedback_${i}.html">${i}</a></c:forEach> </div></td>
     </table>
   </div>
 </form>
@@ -118,4 +117,5 @@ function DelSelect(id){
 }
 
 </script>
-</body></html>
+</body>
+</html>

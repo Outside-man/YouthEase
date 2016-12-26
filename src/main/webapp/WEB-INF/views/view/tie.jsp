@@ -24,38 +24,69 @@
     <div id="content">
         <div class="container">
             <div class="row ">
-                <div class="span12">
-
-                       <h2> ${forum.title} --- <h3> ${masteruser.nuserName}</h3> </h2>
-                    <a href="self_center_p/${masteruser.id}" class="btn btn-group-sm">${masteruser.nuserName}</a>
-                        <h4>${forum.content}</h4>
-                </div >
-                <div class="span10">
-                <ul>
-                <c:forEach items="${list}" varStatus="i" var="item" >
-                    <ul>
-                <li>
-                    <div class=row">
-                    <article class="span8">
-                    <h5 > ${item.comment.content} </h5>
-                    <a href="self_center_p/${item.comment.userId}" class="btn btn-1">${item.username}</a>
-                    </article>
-                    <h5 >---------------${item.comment.floor}-层</h5>
-                        <img src="${item.iconUrl}" width="100" height="100"/>
-                    </div>
-                </li>
-                    </ul>
-                </c:forEach>
-                </ul>
-                </div>
-
-            <div class="row">
-            <article class="span8">
-                <div class="inner-1">
-                    <form id="post_comment" action="post_comment" method="post" accept-charset="utf-8" >
+                <div class="span8">
+                    <div class="inner-1">
                         <ul class="list-blog">
                             <li>
-                                <div class="clearfix">
+                                <h3>${forum.title}</h3>
+                                <div class="avatar" >
+                                    <div style="float:left;width:120px">
+                                        <a href="self_center_p/${masteruser.id}"><img src="${item.iconUrl}" width="100" height="100"/></a>
+                                        <div class="name-author"><i class="icon-user icon-white"></i>
+                                            <a href="self_center_p/${masteruser.id}" >${masteruser.nuserName}</a>
+                                        </div>
+                                    </div>
+
+                                    <p style="text-indent:2em;">${forum.content}</p>
+                                    <img alt="" src="img/blog-1.jpg"><!--图片如果有就添加-->
+                                </div>
+                                <div class="clear"></div>
+
+                                <div class="tail" style="float:right;">
+
+                                    <a href="#" class="comments">${forum.addTime}&nbsp;&nbsp;|</a>
+                                    <a href="#post_comment" class="comments" > 回复|</a> <!--回复帖主跳转至底部发布回复区域-->
+                                </div>
+
+                            </li>
+                            <li>
+                                <c:forEach items="${list}" varStatus="i" var="item" >
+                                <div class="avatar" >
+                                    <div style="float:left;width:120px；">
+                                        <a href="self_center_p/${item.comment.userId}"><img src="${item.iconUrl}" width="100" height="100"/></a>
+                                        <div class="name-author"><i class="icon-user icon-white"></i>
+                                            <a href="self_center_p/${masteruser.id}" >${item.nuserName}</a>
+                                        </div>
+                                    </div>
+                                    <p style="text-indent:2em;">${item.comment.content}</p>
+
+                                </div>
+                                <div class="clear"></div>
+                                <div class="tail" style="float:right;">
+                                    <a href="#" class="comments">${item.comment.floor+1}层&nbsp;&nbsp;|</a>
+                                    <a href="#" class="comments">${item.addTime}&nbsp;&nbsp;|</a>
+                                    <a href="#" class="comments" onclick="showText();return false;" id="respond"> 回复 </a> <!--回复评论 显示被隐藏的回复区域 showText()在base.jsp-->
+                                </div>
+                                <div id="text">
+                     <textarea type="text" name="content" rows="3" style="width: 100%;">
+                     </textarea>
+                                    <a href="#" class="comments" >发表回复</a>
+                                </div>
+                    </div>
+
+                    </c:forEach>
+                    </li>
+                    </ul>
+
+                </div >
+            </div>
+
+
+            <li>
+                <form id="post_comment" action="post_comment" method="post" accept-charset="utf-8" >
+                    <ul class="list-blog">
+                        <li>
+                            <div class="clearfix">
                                 <div class="clear"></div>
                                 <div style="float: right;position: relative;top:18px;">
                                     <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
@@ -64,18 +95,16 @@
                                 <h3>内容</h3>
                                 <textarea type="text" name="content" rows="20" style="width: 100%;">
                                 </textarea>
-                                    <input type="hidden" name="forumId" value="${forum.id}"/>
-                                    <input type="hidden" name="userId" value="${user.id}"/>
-                                    <input type="hidden" name="floor" value="${fn:length(list)}"/>
+                                <input type="hidden" name="forumId" value="${forum.id}"/>
+                                <input type="hidden" name="userId" value="${user.id}"/>
+                                <input type="hidden" name="floor" value="${fn:length(list)}"/>
                                 <button type="submit"  id="submit_btn" class="btn btn-primary btn-lg" style="float: right;">&nbsp;回&nbsp;贴&nbsp; </button>
-                                </div>
-                            </li>
-                        </ul>
-                    </form>
-                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </form>
+            </li>
 
-            </article>
-            </div>
         </div>
     </div>
 </div>

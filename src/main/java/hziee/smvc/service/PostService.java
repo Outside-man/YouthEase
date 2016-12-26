@@ -29,9 +29,9 @@ public class PostService {
         forum.setUserId(user.getId());
         forum.setTypes("emotion");
         Date now = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
         String hehe = dateFormat.format(now);
-        forum.setAdditionStatus(hehe+"  "+user.getNuserName()+ " "+user.getEmail());
+        forum.setAddTime(hehe);
         forumMapper.insert(forum);
     }
 
@@ -63,12 +63,12 @@ public class PostService {
     }
     public List<Forum> GetTypesOfForum(String str){
         SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Forum.class);
-      //  System.out.println("List washed");
+        //  System.out.println("List washed");
         String sql  = sqlBuilder.fields().where("types=#{0}").selectSql();
-      //  System.out.println("List washed");
+        //  System.out.println("List washed");
         List<Row> list = sqlRunner.select(sql,str);
         List<Forum> forumList = new ArrayList<>();
-       // System.out.println("List washed");
+        // System.out.println("List washed");
         for(Row r:list) {
             Integer id = (Integer) r.get("id");
             Forum temp = forumMapper.selectByPrimaryKey(id);

@@ -1,15 +1,16 @@
 package com.zlzkj.app.controller;
 
+import hziee.smvc.model.Contact;
+import hziee.smvc.model.Forum;
 import hziee.smvc.model.User;
-import hziee.smvc.service.ContactService;
-import hziee.smvc.service.PostService;
-import hziee.smvc.service.UserService;
+import hziee.smvc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/16.
@@ -23,6 +24,10 @@ public class AdminEnterController {
     private  UserService userService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private PageService pageService;
+    @Autowired
+    private PageContentService pageContentService;
     @RequestMapping("/login")
     public String AdminLogin(User user, HttpServletRequest request, HttpServletResponse response){
         return  null;
@@ -41,16 +46,32 @@ public class AdminEnterController {
         String s = request.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
+
+        //访问的请求中有问号的时候
+        String specialRe[] = result.split("[_]");
+        Integer specialInt =null;
+        if(specialRe.length>=2){
+            result=specialRe[0];
+            specialInt = Integer.parseInt(specialRe[1]);
+        }
+        List list;
+        pageService.setContentPerCount(8);
+        //分析问号
         if(result.equals("feedback")){
-            request.setAttribute("list",contactService.getAllContact());
+
+            request.setAttribute("list",list=pageContentService.getPagedContent(specialInt, Contact.class));
+            request.setAttribute("pages",pageService.getPagesCount(contactService.getAllContact().size()));
             return "/"+IndexController.adminRoot+"/"+result;
         }
         if(result.equals("rank")){
-            request.setAttribute("list", userService.GetAllUser());
+            request.setAttribute("list",list=pageContentService.getPagedContent(specialInt, User.class));
+            request.setAttribute("pages",pageService.getPagesCount(userService.getAllUser().size()));
             return "/"+IndexController.adminRoot+"/"+result;
         }
         if(result.equals("list")){
-            request.setAttribute("list",postService.getAllForum());
+            request.setAttribute("list",list=pageContentService.getPagedContent(specialInt, Forum.class));
+            request.setAttribute("pages",pageService.getPagesCount(postService.getAllForum().size()));
+
             return "/"+IndexController.adminRoot+"/"+result;
         }
         String repart[] = result.split("[X]");
@@ -62,7 +83,6 @@ public class AdminEnterController {
             }
             return "/"+IndexController.adminRoot+"/"+repart[0];
         }
-
         return "/"+IndexController.adminRoot+"/"+result;
     }
 }

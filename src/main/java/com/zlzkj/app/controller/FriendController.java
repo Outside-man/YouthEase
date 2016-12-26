@@ -37,8 +37,9 @@ public class FriendController extends BaseController{
 
     @RequestMapping("/agr")
     @ResponseBody
-    public String Agree(@RequestParam("FriendPair")String paras[], HttpServletResponse request, HttpServletResponse response){
+    public String Agree(@RequestParam("FriendPair")String paras[], HttpServletRequest request, HttpServletResponse response){
         System.out.println("test");
+
         if(paras.length!=3){
             System.out.println("not legal");
             return ajaxReturn(response,null);
@@ -46,6 +47,7 @@ public class FriendController extends BaseController{
             System.out.println("just be friend");
             friendService.BecomeFriend(Integer.parseInt(paras[0]),Integer.parseInt(paras[1]));
             messageService.DeleteMessage(Integer.parseInt(paras[2]));
+            request.setAttribute("friends",friendService.GetFriendOfUser(Integer.parseInt(paras[0])));
         }
         return ajaxReturn(response,null);
     }

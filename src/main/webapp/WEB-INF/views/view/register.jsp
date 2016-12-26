@@ -56,6 +56,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }); 
         
   </script>
+      <script type="text/javascript">
+
+          function passwords(){
+              var pas1,pas2;
+
+              pas1=document.getElementById("password").value;
+              pas2=document.getElementById("repassword").value;
+              if(pas1.length<6){
+                  $("#pass-result").html("密码长度小于6位");
+                  $("#pass-result").css("color","red");
+                  $("#submit_btn").attr("disabled", true);
+                  return;
+              }
+              if(!(pas1==pas2 && pas2!='')){
+                  $("#pass-result").html("重复密码不匹配");
+                  $("#pass-result").css("color","red");
+                  $("#submit_btn").attr("disabled", true);
+                  return;
+              }else{
+                  $("#pass-result").html("有效的密码");
+                  $("#pass-result").css("color","red");
+                  $("#submit_btn").attr("disabled", false);
+              }
+          }
+          function check(){
+              var e=$("#email").val();
+              $.ajax({
+                  url:'http://localhost:8080/YouthEase/user/checking',
+                  type:'post',
+                  data: "email=" + e,
+                  dataType: "json",
+                  success:function(data){
+                      var obj = data;
+                      var myData=[];       //定义一个数组变量
+                      $.each(obj,function(key,value){
+                          myData.push(value);
+                      });
+                      if(myData[2]==1){
+                          $("#show-result").css("color","red");
+                          $("#submit_btn").attr("disabled", true);
+
+                      }else{
+                          $("#show-result").css("color","green");
+                          $("#submit_btn").attr("disabled", false);
+                      }
+                      $("#show-result").html(myData[1]);
+
+                  },
+                  error:function(data){
+                      alert("删除失败");
+                  }
+              })
+          }
+      </script>
 
 <!--[if lt IE 8]>
       <div style='text-align:center'><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/img/upgrade.jpg"border="0"alt=""/></a></div>  
@@ -122,31 +176,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
       <div class="login_form">
         <form action="user/register" id="login_form" method="post">
-          <div class="form-group">
-            <label for="email" class="t">邮　箱：</label>
-            <input id="email" value="" name="email" type="text" class="form-control x319 in"
-            autocomplete="off">
+          <div class="form-group" id="email-container">
+              <label id="show-result"  class="t"></label>
+            <label id="email-title" for="email" class="t">邮　箱：</label>
+
+            <input id="email" value="" name="email" type="text"  onblur="check()" class="form-control x319 in" autocomplete="off">
           </div>
           <div class="form-group">
+              <label id="pass-result"  class="t"></label>
             <label for="password" class="t">密　码：</label>
-            <input id="password" value="" name="PasswordHash" type="password"
-            class="password form-control x319 in">
+            <input id="password" value=""  onkeypress="passwords()"  onblur="passwords()" name="passwordHash" type="password"
+            class="password form-control x319 in"/>
           </div>
           <div class="form-group">
             <label for="repassword" class="t">确认密码：</label>
-            <input id="repassword" value="" name="repassword" type="password"
-            class="password form-control x319 in">
+            <input id="repassword" value="" onkeypress="passwords()" onblur="passwords()" name="repassword" type="password"
+            class="password form-control x319 in"/>
           </div>
           <div class="form-group">
             <label for="j_captcha" class="t">验证码：</label>
              <input id="j_captcha" name="j_captcha" type="text" class="form-control x164 in">
             <img id="captcha_img" alt="点击更换" title="点击更换" src="img/captcha.jpeg" class="m">
           </div>
-         
           <div class="form-group space">
             <label class="t"></label>　　　
             <button type="submit"  id="submit_btn"
-            class="btn btn-primary btn-lg">&nbsp;注&nbsp;册&nbsp; </button>
+            class="btn btn-primary btn-lg" disabled="true" >&nbsp;注&nbsp;册&nbsp; </button>
             <input type="reset" value="&nbsp;重&nbsp;置&nbsp;" class="btn btn-default btn-lg">
           </div>
         </form>

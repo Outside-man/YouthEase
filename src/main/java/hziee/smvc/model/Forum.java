@@ -15,7 +15,7 @@ public class Forum {
 
     private Integer additionId;
 
-    private Integer addTime;
+    private String addTime;
 
     private Integer floors;
 
@@ -75,12 +75,12 @@ public class Forum {
         this.additionId = additionId;
     }
 
-    public Integer getAddTime() {
+    public String getAddTime() {
         return addTime;
     }
 
-    public void setAddTime(Integer addTime) {
-        this.addTime = addTime;
+    public void setAddTime(String addTime) {
+        this.addTime = addTime == null ? null : addTime.trim();
     }
 
     public Integer getFloors() {

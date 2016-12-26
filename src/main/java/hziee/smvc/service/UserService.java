@@ -60,7 +60,7 @@ public class UserService  {
         if(selectUserIdFromEmail(email)==FIND_FAILED) return false;
         return true;
     }
-    public List<User> GetAllUser(){
+    public List<User> getAllUser(){
         return userMapper.selectAll();
     }
     public User findByID(Integer id){
@@ -83,6 +83,13 @@ public class UserService  {
         }
 
     }
+    public boolean hasUser(String email){
+        if(selectUserIdFromEmail(email)!=FIND_FAILED){
+            return true;
+        }
+        return false;
+    }
+
     public User updateUser(User whichUser){
         String hash=null;
         User pastUserInfo  = userMapper.selectByPrimaryKey(whichUser.getId());
@@ -105,10 +112,10 @@ public class UserService  {
         int id=userMapper.updateByPrimaryKey(pastUserInfo);
         return userMapper.selectByPrimaryKey(id);
     }
-    public List<User> GetMatchedUser(String match){
+    public List<User> GetMatchedUser(String match,String types){
         SQLBuilder sqlBuilder  = SQLBuilder.getSQLBuilder(User.class);
-        String sqlex= sqlBuilder.fields("id,email").where("email=#{0} or nuser_name=#{0}").selectSql();
-        List<Row> list = sqlRunner.select(sqlex,match);
+        String sqlex="SELECT * from s_user where "+types+" like '%"+match+"%'";
+        List<Row> list = sqlRunner.select(sqlex);
         List<User> users = new ArrayList<>();
         for(Row r:list){
             Integer uid = (Integer)r.get("id");

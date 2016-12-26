@@ -4,7 +4,6 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <jsp:include page="../public/base.jsp"/>
@@ -30,9 +29,11 @@
         $.ajax({
             url:'http://localhost:8080/YouthEase/friend/agr',
             type:'post',
+            async : false,
             data: "FriendPair=" + array,
             dataType: "json",
             success:function(data){
+                location.reload();
                 $("div #friend-list").html(data);
                 $("div #friend_make").html(data);
                 $("div #message-box").html(data);
@@ -52,7 +53,9 @@
             type:'post',
             data: "FriendPair=" + array,
             dataType: "json",
+            async : false,
             success:function(data){
+                location.reload();
                 $("div #friend-list").html(data);
                 $("div #friend_make").html(data);
                 $("div #message-box").html(data);
@@ -70,6 +73,7 @@
             data: "msgid=" + id,
             dataType: "json",
             success:function(data){
+                location.reload();
                 $("div #message-box").html(data);
 
             },
@@ -116,7 +120,7 @@
                         <c:if test="${user.id==centerUser.id}">
                             <section> <a href="#" class="link-1"></a>
                                 <form id="${user.id}" action="uploads/userIcon" method="post" enctype="multipart/form-data">
-                                    照片：<input type="file" name="icon"/>
+                                    照片：<input type="file" name="icon" src=""/>
                                     <button type="submit"  id="submit_btn"
                                             class="btn btn-primary btn-lg">&nbsp;上&nbsp;传&nbsp; </button>
                                 </form>
@@ -246,12 +250,6 @@
                     </div>
 
                 </article>
-
-
-
-
-
-
 
             </div>
 

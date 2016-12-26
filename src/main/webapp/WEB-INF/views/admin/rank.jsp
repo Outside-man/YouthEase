@@ -24,9 +24,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="padding border-bottom">
       <ul class="search" style="padding-left:10px;">
         <li> <a class="button border-main icon-plus-square-o" href="admin/newuser.html"> 添加用户</a> </li>
+        <form action="search/user">
+        <select name="types" class="input w50" >
+          <option value="email">邮箱</option>
+          <option value="id">id</option>
+          <option value="nuser_name">用户名</option>
+        </select>
         <li>搜索：</li>
         <li>
-          <form action="search/user">
+
+
+
           <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style = "width:250px; line-height:17px;display:inline-block" >
           <button type="submit" class="button border-main icon-search" >搜索</button>
           </form>
@@ -45,7 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" id ="${item.id }"name="id[]" value="" />
            ${item.id}</td>
+          <c:if test="${empty search or search==false}">
           <td>${item.nuserName}</td>
+          </c:if>
+          <c:if test="${ search==true}">
+            <td>${item.nuser_name}</td>
+          </c:if>
             <c:if test="${item.authority==666}">
             <td><font color="#00CC99">超级管理员</font></td>
             </c:if>
@@ -60,9 +73,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </tr>
               </c:forEach>
       </volist>
-
-
-
+      <c:if test="${empty search or search==false}">
+      <td colspan="8"><div class="pagelist"> <c:forEach var="i"  begin="1" end="${pages}" > </span><a href="admin/rank_${i}.html">${i}</a></c:forEach> </div></td>
+      </c:if>
+      <c:if test="${ search==true}">
+      <td colspan="8"><div class="pagelist"> <c:forEach var="i"  begin="1" end="${pages}" > </span><a href="search/user_${search_info}_${i}.html">${i}</a></c:forEach> </div></td>
+      </c:if>
 
       <tr>
         <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
