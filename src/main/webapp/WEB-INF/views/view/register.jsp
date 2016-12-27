@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   return;
               }else{
                   $("#pass-result").html("有效的密码");
-                  $("#pass-result").css("color","red");
+                  $("#pass-result").css("color","green");
                   $("#submit_btn").attr("disabled", false);
               }
           }

@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <jsp:include page="../public/base.jsp"/>
@@ -46,8 +46,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <img alt="" src="img/blog-3.jpg">                               
               <p>Morbi ullamcorper, leo eget varius elementum, orci leo feugiat lectus, vitae lobortis mauris velit tempor erat. Etiam eget orci at massa pretium fringilla ac non tortor. Fusce sed velit risus, vitae vehicula quam. Cras at turpis urna, eget volutpat neque. Nullam porttitor, est interdum placerat pharetra, erat sapien aliquet urna, at commodo risus tellus eu nunc.</p>
               <a href="#" class="btn btn-1">Read More</a>          
-            </li> 
-                          
+            </li>
+              <c:forEach items="${forum}" varStatus="i" var="item" >
+                  <li>
+                      <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
+                      <a href="${item.id}.tie" class="btn btn-1">Read This</a>
+                  </li>
+              </c:forEach>
           </ul>
           </div>  
         </article>

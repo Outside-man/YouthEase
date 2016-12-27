@@ -96,13 +96,13 @@
                                     <li><a href="work.html">作品栈</a></li>
                                <c:choose>
 
-                                    <c:when test="${empty user}">
+                                    <c:when test="${empty user or logininfo=='logout'}">
                                     <li class="sub-menu"><a href="redirect/login">登&nbsp;录</a>
                                         <ul>
                                             <li><a href="register.html">注册</a></li> </ul>
                                         </c:when>
                                     <c:otherwise>
-                                    <li class="sub-menu"><a href="self_center.html">个人中心</a>
+                                    <li class="sub-menu"><a href="self_center.html">${user.nuserName}</a>
                                         <ul><a href="user/logout">登出</a></ul>
                                     </c:otherwise>
                                     </c:choose>

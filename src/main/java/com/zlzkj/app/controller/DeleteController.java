@@ -79,4 +79,19 @@ public class DeleteController extends BaseController{
         }
         return ajaxReturn(httpServletResponse,contactService.getAllContact());
     }
+    @RequestMapping(value = "/comment", method = {RequestMethod.POST})
+    @ResponseBody
+    public String DeleteComment(@RequestParam("DeleteList")String params[], HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
+        User user = (User)httpServletRequest.getSession().getAttribute("user");
+        if(user==null||user.getAuthority()!=666) {
+            return null;
+        }
+        System.out.println("进入DeleteComment");
+        for(String id:params){
+            System.out.println(id);
+            Integer  i = Integer.parseInt(id);
+            postService.DeleteForum(i);
+        }
+        return ajaxReturn(httpServletResponse,contactService.getAllContact());
+    }
 }

@@ -40,6 +40,7 @@ public class UserController  extends BaseController{
         if(userService.UserExisted(user.getEmail())){
             return "/"+ IndexController.index;
         }
+
         User operator = (User)request.getSession().getAttribute("user");
         userService.NewUser(user);
         if(operator==null)
@@ -54,11 +55,13 @@ public class UserController  extends BaseController{
             return "/"+IndexController.root+"/"+"register";
         request.getSession().setAttribute("user",reuser);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(reuser));
+        request.getSession().setAttribute("logininfo","login");
         return "redirect:/self_center_p/self";
     }
     @RequestMapping("/logout")
         public String Logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
             request.getSession().invalidate();
+            System.out.println("log out");
             request.getSession().setAttribute("logininfo","logout");
             return IndexController.index;
     }
@@ -67,6 +70,7 @@ public class UserController  extends BaseController{
                 User operator = (User)request.getSession().getAttribute("user");
                 user.getId();
                 userService.updateUser(user);
+                request.getSession().setAttribute("user",user);
                 if(user.getId().equals(operator.getId()))
             return "redirect:/self_center_p/self";
         else

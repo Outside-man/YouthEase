@@ -33,7 +33,12 @@ public class UserService  {
         System.out.println(user.getEmail());
         String hash=hashPassword(user.getPasswordHash());
         user.setPasswordHash(hash);
-        insert(user);
+        int key=insert(user);
+        user = userMapper.selectByPrimaryKey(key);
+        if(user.getNuserName()==null||user.getNuserName().trim().equals("")){
+            user.setNuserName("用户"+key);
+        }
+        updateUser(user);
         return user;
     }
     public User getUser(Integer id ){
@@ -95,6 +100,7 @@ public class UserService  {
         User pastUserInfo  = userMapper.selectByPrimaryKey(whichUser.getId());
         System.out.println(whichUser.getId());
         if(whichUser.getPasswordHash()!=null){
+            if(!whichUser.getPasswordHash().equals(pastUserInfo.getPasswordHash()))
             pastUserInfo.setPasswordHash(hashPassword(whichUser.getPasswordHash()));
         }
         if(whichUser.getNuserName()!=null){

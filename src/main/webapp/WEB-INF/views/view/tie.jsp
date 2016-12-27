@@ -72,12 +72,13 @@
                      </textarea>
                                     <a href="#" class="comments" >发表回复</a>
                                 </div>
-                    </div>
+
+
 
                     </c:forEach>
                     </li>
                     </ul>
-
+                    </div>
                 </div >
             </div>
 

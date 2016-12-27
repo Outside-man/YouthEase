@@ -28,6 +28,8 @@ public class AdminEnterController {
     private PageService pageService;
     @Autowired
     private PageContentService pageContentService;
+    @Autowired
+    private  CommentService commentService;
     @RequestMapping("/login")
     public String AdminLogin(User user, HttpServletRequest request, HttpServletResponse response){
         return  null;
@@ -81,6 +83,14 @@ public class AdminEnterController {
                 Integer id = Integer.parseInt(repart[1]);
                 request.setAttribute("u_user",userService.getUser(id));
             }
+            if(repart[0].equals("tie")){
+                Integer id = Integer.parseInt(repart[1]);
+                Forum  forum  = postService.getForumFromId(id);
+                request.setAttribute("forum", forum);
+                request.setAttribute("masteruser",userService.getUser(forum.getUserId()));
+               request.setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
+            }
+
             return "/"+IndexController.adminRoot+"/"+repart[0];
         }
         return "/"+IndexController.adminRoot+"/"+result;

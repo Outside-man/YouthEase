@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <c:forEach items="${list}" varStatus="i" var="item" >
         <tr>
           <td style="text-align:left; padding-left:20px;"><input type="checkbox" name="id[]" value="" />
-           1</td>
+           ${item.id}</td>
           <td width="10%"><img src="images/y.jpg" alt="" width="50" height="50" /></td>
           <td>${item.title}</td>
           <td><font color="#00CC99">${item.types}</font></td>
@@ -70,7 +70,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       </c:if>
     </table>
   </div>
-<script type="text/javascript">
+  <td style="text-align:left; padding:19px 0;padding-left:20px;"><input type="checkbox" id="checkall"/>
+      全选 </td>
+  <td colspan="7" style="text-align:left;padding-left:20px;"><a href="javascript:void(0)" class="button border-red icon-trash-o" style="padding:5px 15px;" onclick="DelSelect(-1)"> 删除</a>
+      <script type="text/javascript">
 
 //搜索
 function changesearch(){	
