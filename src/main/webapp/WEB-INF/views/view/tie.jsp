@@ -31,14 +31,24 @@
                                 <h3>${forum.title}</h3>
                                 <div class="avatar" >
                                     <div style="float:left;width:120px">
-                                        <a href="self_center_p/${masteruser.id}"><img src="${item.iconUrl}" width="100" height="100"/></a>
+                                        <a href="self_center_p/${masteruser.id}"><img src="${masterIconUrl}" width="100" height="100"/></a>
                                         <div class="name-author"><i class="icon-user icon-white"></i>
                                             <a href="self_center_p/${masteruser.id}" >${masteruser.nuserName}</a>
                                         </div>
                                     </div>
 
                                     <p style="text-indent:2em;">${forum.content}</p>
-                                    <img alt="" src="img/blog-1.jpg"><!--图片如果有就添加-->
+                                    <c:if test="${empty forum.additionId or forum.additionId==0}">
+                                        <img alt=""  src="img/blog-1.jpg"><!--图片如果有就添加-->
+                                    </c:if>
+                                    <c:if test="${forum.additionId==1}">
+                                        <img alt="" src="${additionUrl}"><!--图片如果有就添加-->
+                                    </c:if>
+                                    <c:if test="${forum.additionId==2}">
+                                        <video src= "${additionUrl}" controls="controls">
+                                            您的浏览器不支持 video 标签。
+                                        </video>
+                                    </c:if>
                                 </div>
                                 <div class="clear"></div>
 

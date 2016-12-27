@@ -96,6 +96,10 @@
                     <div class="inner-1">
                         <ul class="list-blog">
                             beta-version
+
+                            <div class="container">
+                                <iframe scrolling="auto" rameborder="0" src="mytie.html" name="right" width="100%" height="100%"></iframe>
+                            </div>
                             <c:forEach items="${forum}" varStatus="i" var="item" >
                                 <li>
                                     <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
@@ -207,11 +211,11 @@
                 </article>
 
                 <article class="span4">
-                    <h3 class="extra">我的易友</h3>
+                    <h3 class="extra">寻找易友</h3>
                     <form id="search" action="" method="GET" accept-charset="utf-8" >
                         <div class="clearfix">
                             <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" >
-                            <a href="#" onClick="document.getElementById('search').submit()" class="btn btn-1">Search</a> </div>
+                            <a href="#" onClick="document.getElementById('search').submit()" class="btn btn-1">GO!</a> </div>
                     </form>
                     <h3>最近联系</h3>
                     <ul class="list extra extra1">

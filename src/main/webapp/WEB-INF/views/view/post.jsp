@@ -13,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="row">
         <article class="span8">
          <div class="inner-1">    
-         <form id="postforum" action="post_forum" method="GET" accept-charset="utf-8" >
+         <form id="postforum" action="post_forum" method="post" accept-charset="utf-8"  enctype="multipart/form-data">
           <ul class="list-blog">
             <li>  
             
@@ -22,17 +22,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <h3>标题</h3>
               <input type="text" name="title" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''" style="width: 100%;" ></div>
               <div class="clear"></div> 
-              <div style="float: right;position: relative;top:18px;"> 
-             <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
-            <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">Admin</a></div>
-                </div>    
+              <div style="float: right;position: relative;top:18px;">
+             <%--<time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> </time>--%>
+
+            <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">${user.nuserName}</a></div>
+                </div>
+                <div class="small">
+                <select name="types" class="input w50">
+                    <option value="emotion">感情帖</option>
+                    <option value="trade">交易帖</option>
+                    <option value="mix">杂帖</option>
+                </select>
+                <input type="file" hidden="true" id="file_upload" name="addon" src=""/>
+                <button type="button"  id="file_button"
+                        class="btn btn-primary btn-lg"onclick="document.getElementById('file_upload').click();" >&nbsp;上&nbsp;传&nbsp; </button>
+                </div>
               <h3>内容</h3>
               <textarea type="text" name="content" rows="20" style="width: 100%;"
             >
               </textarea>
                 <button type="submit"  id="submit_btn"
-                        class="btn btn-primary btn-lg" style="float: right;">&nbsp;发&nbsp;贴&nbsp; </button>
-            </li>
+                           class="btn btn-primary btn-lg" style="float: right;">&nbsp;发&nbsp;贴&nbsp; </button>
+              </li>
           </ul>
           </form>
           </div>

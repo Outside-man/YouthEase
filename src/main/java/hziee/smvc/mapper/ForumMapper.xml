@@ -16,16 +16,17 @@
     delete from s_forum
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="hziee.smvc.model.Forum" >
-    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
+  <insert id="insert" parameterType="hziee.smvc.model.Forum" useGeneratedKeys="true" >
+
     insert into s_forum (title, user_id, content, 
       types, addition_status, addition_id, 
       add_time, floors)
     values (#{title,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
       #{types,jdbcType=VARCHAR}, #{additionStatus,jdbcType=VARCHAR}, #{additionId,jdbcType=INTEGER}, 
       #{addTime,jdbcType=VARCHAR}, #{floors,jdbcType=INTEGER})
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="hziee.smvc.model.Forum" >
     update s_forum

@@ -25,18 +25,24 @@ public class PostService {
     private SqlRunner sqlRunner;
     @Autowired
     public ForumMapper forumMapper;
-    public void AddNewForum(Forum forum, User user){
+    public Integer AddNewForum(Forum forum, User user){
         forum.setUserId(user.getId());
-        if(forum.getTypes().trim().equals("")){
+        if(forum.getTypes()==null||forum.getTypes().trim().equals("")){
             forum.setTypes("emotion");
         }
+
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
         String hehe = dateFormat.format(now);
         forum.setAddTime(hehe);
-        forumMapper.insert(forum);
+        return forumMapper.insert(forum);
     }
-
+    public Forum UpdateForum(Forum forum){
+        if(forum.getId()==0)
+            return null;
+        forumMapper.updateByPrimaryKey(forum);
+        return forumMapper.selectByPrimaryKey(forum.getId());
+    }
     public Forum  getForumFromId(Integer id){
         Forum forum = forumMapper.selectByPrimaryKey(id);
         if(forum==null){

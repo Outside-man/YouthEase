@@ -41,7 +41,7 @@
       <td>${item.username}</td>
       <td>
       <div class="button-group">
-       <a class="button border-red" href="javascript:void(0)" onclick="return DelSelect(item.comment.id)"><span class="icon-trash-o"></span> 删除</a>
+       <a class="button border-red" href="javascript:void(0)" onclick="return DelSelect(${item.comment.id})"><span class="icon-trash-o"></span> 删除</a>
       </div>
       </td>
     </tr>
@@ -61,7 +61,6 @@
         if(id!=-1){
             array.push(id);
             Checkbox=true;
-
         }else{
             $("input[name='id[]']").each(function(){
                 if (this.checked==true) {

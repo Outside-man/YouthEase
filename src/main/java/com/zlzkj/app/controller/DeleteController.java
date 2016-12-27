@@ -2,6 +2,7 @@ package com.zlzkj.app.controller;
 
 import com.zlzkj.core.base.BaseController;
 import hziee.smvc.model.User;
+import hziee.smvc.service.CommentService;
 import hziee.smvc.service.ContactService;
 import hziee.smvc.service.PostService;
 import hziee.smvc.service.UserService;
@@ -27,6 +28,8 @@ public class DeleteController extends BaseController{
     private UserService userService;
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentService commentService;
     @RequestMapping(value = "/contact", method = {RequestMethod.POST})
     @ResponseBody
     public String DeleteContact(@RequestParam("DeleteList")String params[], HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
@@ -86,11 +89,10 @@ public class DeleteController extends BaseController{
         if(user==null||user.getAuthority()!=666) {
             return null;
         }
-        System.out.println("进入DeleteComment");
         for(String id:params){
             System.out.println(id);
             Integer  i = Integer.parseInt(id);
-            postService.DeleteForum(i);
+            commentService.DeleteComment(i);
         }
         return ajaxReturn(httpServletResponse,contactService.getAllContact());
     }

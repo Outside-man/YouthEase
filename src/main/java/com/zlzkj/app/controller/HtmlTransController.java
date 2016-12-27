@@ -20,7 +20,7 @@ public class HtmlTransController {
         String result = part[part.length - 2];
 
         if(result.equals("emotion")){
-            return "redirect:/getforum_emotion";
+            return "redirect:/emotion.forum";
         }
         if(result.equals("self_center")){
             return "redirect:/self_center_p/self";

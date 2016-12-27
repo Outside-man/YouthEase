@@ -4,9 +4,7 @@ import java.util.List;
 import com.zlzkj.core.base.BaseController;
 import hziee.smvc.model.Comment;
 import hziee.smvc.model.Forum;
-import hziee.smvc.service.CommentService;
-import hziee.smvc.service.PostService;
-import hziee.smvc.service.UserService;
+import hziee.smvc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +23,12 @@ public class ForumTranserController extends BaseController{
     public CommentService commentService;
     @Autowired
     public UserService userService;
+    @Autowired
+    private  ResourceService resourceService;
+    @Autowired
+    private PicService picService;
+    @Autowired
+    private  MediaService mediaService;
     @RequestMapping("/*.forum")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String s =  httpServletRequest.getRequestURI();
@@ -44,6 +48,9 @@ public class ForumTranserController extends BaseController{
         httpServletRequest.setAttribute("forum", forum);
         httpServletRequest.setAttribute("masteruser",userService.getUser(forum.getUserId()));
         httpServletRequest.setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
+        httpServletRequest.setAttribute("masterIconUrl",picService.getIconUrl(forum.getUserId()));
+        if(forum.getAdditionId()!=null&&forum.getAdditionId()!=0)
+            httpServletRequest.setAttribute("additionUrl",mediaService.getMediaUrl(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";
     }
 }

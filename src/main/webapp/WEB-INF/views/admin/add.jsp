@@ -41,7 +41,7 @@
             <select name="types" class="input w50">
               <option value="emotion">感情帖</option>
             <option value="trade">交易帖</option>
-            <option value="others">杂帖</option>
+            <option value="mix">杂帖</option>
             </select>
             <div class="tips"></div>
           </div>

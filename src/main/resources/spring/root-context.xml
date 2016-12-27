@@ -72,7 +72,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize"><value>1024000</value></property>
+		<property name="maxUploadSize"><value>40960000</value></property>
 		<property name="defaultEncoding"><value>UTF-8</value></property>
 	</bean>
 	<!-- 自动扫描mapper -->

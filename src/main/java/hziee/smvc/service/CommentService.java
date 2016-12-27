@@ -51,6 +51,9 @@ public class CommentService{
 
         return commentList;
     }
+    public int DeleteComment(Integer id){
+       return  commentMapper.deleteByPrimaryKey(id);
+    }
     public int AddNewComment(Comment whichComment){
         int i=commentMapper.insert(whichComment);
         return i;
