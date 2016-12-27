@@ -27,7 +27,9 @@ public class PostService {
     public ForumMapper forumMapper;
     public void AddNewForum(Forum forum, User user){
         forum.setUserId(user.getId());
-        forum.setTypes("emotion");
+        if(forum.getTypes().trim().equals("")){
+            forum.setTypes("emotion");
+        }
         Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
         String hehe = dateFormat.format(now);

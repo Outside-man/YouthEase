@@ -52,7 +52,6 @@ public class PostController {
         if(user==null){
             user = new User();
         }
-
         commentService.AddNewComment(comment);
         return "redirect:/"+comment.getForumId()+".tie";
     }
