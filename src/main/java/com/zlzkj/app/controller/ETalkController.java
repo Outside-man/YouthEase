@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class ETalkController {
         String s =  request.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
+        System.out.println("12345"+result);
         Integer targetId = Integer.parseInt(result);
         List<Row> list = new ArrayList<>();
         User user = (User)request.getSession().getAttribute("user");
@@ -40,17 +42,36 @@ public class ETalkController {
             Row m  = new Row();
             m.put("user",fri);
             if(fri.getId()==targetId){
-                request.setAttribute("targetIcon",picService.getIconUrl(fri.getId()));
+
                 request.setAttribute("t_username",user.getNuserName());
             }
             m.put("icon",picService.getIconUrl(fri.getId()));
             list.add(m);
         }
         request.setAttribute("list",list);
-
+        if(targetId==-1){
+            return "/" + IndexController.root + "/etalk_out";
+        }else{
+            List<Message> messages = messageService.GetUserMessage(user.getId(),targetId);
+            request.setAttribute("messages",messages);
+            request.setAttribute("target",targetId);
+        }
+        return "/" + IndexController.root + "/etalk_out";
+    }
+    @RequestMapping("/*.mes")
+    public String ETalkTo(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("1234");
+        String s =  request.getRequestURI();
+        String part[] =  s.split("[.|/]");
+        String result = part[part.length - 2];
+        Integer targetId = Integer.parseInt(result);
+        List<Row> list = new ArrayList<>();
+        User user = (User)request.getSession().getAttribute("user");
+        List<User> users  =friendService.GetFriendOfUser(user.getId());
         if(targetId==-1){
             return "/" + IndexController.root + "/etalk";
         }else{
+            request.setAttribute("targetIcon",picService.getIconUrl(targetId));
             List<Message> messages = messageService.GetUserMessage(user.getId(),targetId);
             request.setAttribute("messages",messages);
             request.setAttribute("target",targetId);

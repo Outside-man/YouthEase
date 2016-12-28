@@ -25,6 +25,8 @@ public class PostService {
     private SqlRunner sqlRunner;
     @Autowired
     public ForumMapper forumMapper;
+    @Autowired
+    private  UserService userService;
     public Integer AddNewForum(Forum forum, User user){
         forum.setUserId(user.getId());
         if(forum.getTypes()==null||forum.getTypes().trim().equals("")){
@@ -69,20 +71,19 @@ public class PostService {
     public Integer DeleteForum(Integer id){
         return forumMapper.deleteByPrimaryKey(id);
     }
-    public List<Forum> GetTypesOfForum(String str){
+    public List<Row> GetTypesOfForum(String str){
         SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Forum.class);
         //  System.out.println("List washed");
         String sql  = sqlBuilder.fields().where("types=#{0}").selectSql();
         //  System.out.println("List washed");
         List<Row> list = sqlRunner.select(sql,str);
-        List<Forum> forumList = new ArrayList<>();
         // System.out.println("List washed");
         for(Row r:list) {
             Integer id = (Integer) r.get("id");
             Forum temp = forumMapper.selectByPrimaryKey(id);
-            forumList.add(temp);
+            r.put("username",userService.getUser(temp.getUserId()).getNuserName());
         }
-        return forumList;
+        return list;
     }
     public List<Forum> getAllForum(){
         return forumMapper.selectAll();

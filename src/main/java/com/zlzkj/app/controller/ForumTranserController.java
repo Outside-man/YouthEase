@@ -32,6 +32,8 @@ public class ForumTranserController extends BaseController{
     private  MediaService mediaService;
     @Autowired
     private PageContentService pageContentService;
+    @Autowired
+    private  PageService pageService;
     @RequestMapping("/*.forum")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String s =  httpServletRequest.getRequestURI();
@@ -48,9 +50,12 @@ public class ForumTranserController extends BaseController{
         String result = part[part.length - 2];
         Integer id = Integer.parseInt(result);
         Forum  forum  = postService.getForumFromId(id);
+        List list= null;
         httpServletRequest.setAttribute("forum", forum);
         httpServletRequest.setAttribute("masteruser",userService.getUser(forum.getUserId()));
-        httpServletRequest.setAttribute("list",commentService.GetCommentsOfForum(forum.getId()));
+        httpServletRequest.setAttribute("list",list=commentService.GetCommentsOfForum(forum.getId()));
+        forum.setFloors(list.size());
+        postService.UpdateForum(forum);
         httpServletRequest.setAttribute("masterIconUrl",picService.getIconUrl(forum.getUserId()));
         if(forum.getAdditionId()!=null&&forum.getAdditionId()!=0)
             httpServletRequest.setAttribute("additionUrl",mediaService.getMediaUrl(forum.getId()));
@@ -67,7 +72,7 @@ public class ForumTranserController extends BaseController{
         httpServletRequest.setAttribute("centerUser",user);
         Integer pages = Integer.parseInt(specialRe[1]);
         System.out.println(pages);
-        httpServletRequest.setAttribute("pages",pages);
+        httpServletRequest.setAttribute("pages",pageService.getPagesCount(postService.GetUsersForum(user.getId()).size()));
         List list = pageContentService.getPageContentExact(pages,Forum.class,"user_id="+user.getId());
         System.out.println(list.size());
         httpServletRequest.setAttribute("forum",list);

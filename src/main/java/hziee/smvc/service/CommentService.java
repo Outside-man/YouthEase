@@ -29,6 +29,8 @@ public class CommentService{
     private  PicService picService;
     @Autowired
     private SqlRunner sqlRunner;
+    @Autowired
+    private  PostService postService;
     public List<Row> GetCommentsOfForum(Integer forumId){
         SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Comment.class);
         //  System.out.println("List washed");
@@ -56,8 +58,13 @@ public class CommentService{
     }
     public int AddNewComment(Comment whichComment){
         int i=commentMapper.insert(whichComment);
+        Integer id=whichComment.getForumId();
+        Forum forum =postService.getForumFromId(id);
+        forum.setFloors(forum.getFloors()+1);
         return i;
     }
-
+    public Comment GetComment(Integer id){
+        return commentMapper.selectByPrimaryKey(id);
+    }
 
 }

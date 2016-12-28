@@ -18,13 +18,11 @@ public class PageService {
     public PageService(){
         contentPerCount=8;
     }
-
     public Integer getPagesCount(Integer size){
+        System.out.println("总内容数:"+size);
+        size-=1;
+        if(size<0) size=0;
         double shifter =  (double)size/(double)contentPerCount;
-        if((int)shifter==shifter&&shifter!=0){
-            shifter-=1.0;
-            System.out.println("shifter:"+shifter);
-        }
         return (int)shifter+1;
     }
 

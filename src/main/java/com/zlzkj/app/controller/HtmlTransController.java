@@ -25,8 +25,11 @@ public class HtmlTransController {
         if(result.equals("self_center")){
             return "redirect:/self_center_p/self";
         }
-        if(result.equals("etalk")){
+        if(result.equals("etalk_out")){
             return "redirect:/etalkto/-1.user";
+        }
+        if(result.equals("etalk")){
+            return "redirect:/etalkto/-1.mes";
         }
         return "/"+IndexController.root+"/"+result;
     }

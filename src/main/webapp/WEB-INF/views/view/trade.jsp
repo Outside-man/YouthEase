@@ -15,42 +15,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <article class="span8">
          <div class="inner-1">         
           <ul class="list-blog">
-            <li>  
-            <h3>Morbi ullamcorper leo eget varius elementum</h3>     
-            <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
-            <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">Admin</a></div>
-            <a href="#" class="comments"><i class="icon-comment icon-white"></i> 11 comments</a> 
-            <div class="clear"></div>            
-              <img alt="" src="img/blog-1.jpg">                               
-              <p>Morbi ullamcorper, leo eget varius elementum, orci leo feugiat lectus, vitae lobortis mauris velit tempor erat. Etiam eget orci at massa pretium fringilla ac non tortor. Fusce sed velit risus, vitae vehicula quam. Cras at turpis urna, eget volutpat neque. Nullam porttitor, est interdum placerat pharetra, erat sapien aliquet urna, at commodo risus tellus eu nunc.</p>
-              <a href="#" class="btn btn-1">Read More</a>          
-            </li>  
-                        
-            <li>  
-            <h3>Duis autem vel eum iriure dolor</h3>     
-            <time datetime="2012-11-08" class="date-1">8.11.2012</time>
-            <div class="name-author">by <a href="#">Admin</a></div>
-            <a href="#" class="comments">9 comments</a> 
-            <div class="clear"></div>            
-              <img alt="" src="img/blog-2.jpg">                               
-              <p>Morbi ullamcorper, leo eget varius elementum, orci leo feugiat lectus, vitae lobortis mauris velit tempor erat. Etiam eget orci at massa pretium fringilla ac non tortor. Fusce sed velit risus, vitae vehicula quam. Cras at turpis urna, eget volutpat neque. Nullam porttitor, est interdum placerat pharetra, erat sapien aliquet urna, at commodo risus tellus eu nunc.</p>
-              <a href="#" class="btn btn-1">Read More</a>          
-            </li> 
-            
-            <li>  
-            <h3>Nullam porttitor est interdum placerat pharetra</h3>     
-            <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> 9.11.2012</time>
-            <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">Admin</a></div>
-            <a href="#" class="comments"><i class="icon-comment icon-white"></i> 11 comments</a> 
-            <div class="clear"></div>            
-              <img alt="" src="img/blog-3.jpg">                               
-              <p>Morbi ullamcorper, leo eget varius elementum, orci leo feugiat lectus, vitae lobortis mauris velit tempor erat. Etiam eget orci at massa pretium fringilla ac non tortor. Fusce sed velit risus, vitae vehicula quam. Cras at turpis urna, eget volutpat neque. Nullam porttitor, est interdum placerat pharetra, erat sapien aliquet urna, at commodo risus tellus eu nunc.</p>
-              <a href="#" class="btn btn-1">Read More</a>          
-            </li>
               <c:forEach items="${forum}" varStatus="i" var="item" >
                   <li>
-                      <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
-                      <a href="${item.id}.tie" class="btn btn-1">Read This</a>
+                      <h3>${item.title}</h3>
+                      <time datetime="2012-11-09" class="date-1"><i class="icon-calendar icon-white"></i> ${item.add_time}</time>
+                      <div class="name-author"><i class="icon-user icon-white"></i> <a href="#">${item.username}</a></div>
+                      <a href="#" class="comments"><i class="icon-comment icon-white"></i>评论数:${item.floors}</a>
+                      <div class="clear"></div>
+                      <img alt="" src="img/blog-3.jpg">
+                      <a href="${item.id}.tie" class="btn btn-1">Read More</a>
                   </li>
               </c:forEach>
           </ul>

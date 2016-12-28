@@ -1,6 +1,7 @@
 package com.zlzkj.app.controller;
 
 import com.zlzkj.core.base.BaseController;
+import hziee.smvc.model.Comment;
 import hziee.smvc.model.User;
 import hziee.smvc.service.CommentService;
 import hziee.smvc.service.ContactService;
@@ -93,6 +94,7 @@ public class DeleteController extends BaseController{
             System.out.println(id);
             Integer  i = Integer.parseInt(id);
             commentService.DeleteComment(i);
+
         }
         return ajaxReturn(httpServletResponse,contactService.getAllContact());
     }

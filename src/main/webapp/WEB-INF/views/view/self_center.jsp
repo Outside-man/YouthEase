@@ -118,9 +118,9 @@
                     <c:if test="${centerUser.id==user.id}">
 
                     <div class="inner-1">
-                        <h4>奇妙交流</h4>
                         <div class="container" hidden="true" id="e-talk">
-                            <iframe scrolling="auto"  rameborder="0" src="etalk.html" name="right" width="80%" height="60%"></iframe>
+                            <h4>奇妙交流</h4>
+                            <iframe scrolling="auto"  rameborder="0" src="etalk_out.html" name="right" width="80%" height="60%"></iframe>
                         </div>
                     </div>
                     </c:if>

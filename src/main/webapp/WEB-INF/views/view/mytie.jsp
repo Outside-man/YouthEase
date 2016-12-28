@@ -38,29 +38,37 @@
     <div id="content"><div class="ic"></div>
         <div class="container">
             <div class="row">
-                <article class="span8" style="float:right">
+                <article class="span8" >
                     <div class="inner-1">
                         <ul class="list-blog">
                             <c:forEach items="${forum}"  varStatus="i" var="item" >
-                            <li>
-                                <c:if test="${not empty item}">
-                                <h2 > ${item.title}</h2> ----- <h3> ${item.add_time}</h3>
-                                <a href="${item.id}.tie" class="btn btn-1">Read This</a>
-                                </c:if>
-                            </li>
-                             </c:forEach>
+                                <li>
+                                    <c:if test="${not empty item}">
+                                        <a href="${item.id}.tie" >${item.title}</a>
+                                        <time datetime="${item.add_time}" style="float:right;">
+                                            <i class="icon-calendar icon-white"></i> ${item.add_time}
+                                        </time>
+                                    </c:if>
+                                </li>
+                            </c:forEach>
                         </ul>
 
+                        <td colspan="8">
+                            <div class="big">页数
+                                <c:forEach var="i"  begin="1" end="${pages}" >
+                                    <a href="${centerUser.id}_${i}.myforum"> ${i}</a>
+                                </c:forEach>
+                            </div>
+                        </td>
                     </div>
                 </article>
-              </div></td>
-            <td colspan="8"><div class="big">页数 <c:forEach var="i"  begin="1" end="${pages}" > </span><a href="${centerUser.id}_${i}.myforum"> ${i}</a></c:forEach>
             </div>
+
         </div>
 
     </div>
 </div>
-</article>
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 </body>
 </body>

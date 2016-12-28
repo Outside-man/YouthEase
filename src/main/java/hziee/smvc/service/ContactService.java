@@ -43,4 +43,5 @@ public class ContactService {
     public void DeleteContatc(Integer id){
         contactMapper.deleteByPrimaryKey(id);
     }
+
 }
