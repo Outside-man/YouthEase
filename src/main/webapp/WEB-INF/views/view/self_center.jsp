@@ -46,8 +46,13 @@
     }
     var showing= 0;
     function show(){
-        if(showing==0)
-        $("")
+        if(showing==0){
+            $("div #e-talk").show();
+            showing=1;
+        }else{
+            $("div #e-talk").hide();
+            showing=0;
+        }
     }
     function del(id1,id2){
         var array = new Array();
@@ -105,9 +110,11 @@
                             <div class="container">
                                 <iframe scrolling="auto" rameborder="0" src="${centerUser.id}_1.myforum" name="right" width="80%" height="60%"></iframe>
                             </div>
-                            <div class="container">
-                                <iframe scrolling="auto" rameborder="0" src="${centerUser.id}_1.myforum" name="right" width="80%" height="60%"></iframe>
+                            <c:if test="${centerUser.id==user.id}">
+                            <div class="container" hidden="true" id="e-talk">
+                                <iframe scrolling="auto"  rameborder="0" src="etalk.html" name="right" width="80%" height="60%"></iframe>
                             </div>
+                            </c:if>
                         </ul>
 
                     </div>

@@ -53,6 +53,20 @@ public class MessageService {
         }
         return messageArrayList;
     }
+    public List<Message> GetUserMessage(Integer id1,Integer id2){
+        SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Message.class);
+        String sql  = sqlBuilder.fields().where("(target_id=#{0} and  source_id=#{1}) or (target_id=#{1} and  source_id=#{0}) ").selectSql();
+        List<Row> list = sqlRunner.select(sql,id1,id2);
+        List<Message> messageArrayList = new ArrayList<>();
+        // System.out.println("List washed");
+        for(Row r:list) {
+            Integer idd = (Integer) r.get("id");
+            Message temp = messageMapper.selectByPrimaryKey(idd);
+            messageArrayList.add(temp);
+        }
+        return messageArrayList;
+    }
+
     public boolean Legality(Message m){
         if(m.getType().equals("friend_making")){
             SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(Message.class);

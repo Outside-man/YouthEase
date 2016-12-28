@@ -36,16 +36,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="row">
     <article class="span8" style="float:right">
     <div class="inner-1">
-    <ul class="list-blog">
-    <c:forEach items="${forum}"  varStatus="i" var="item" >
-<li>
-<c:if test="${not empty item}">
-    <h2 > ${item.title}</h2> ----- <h3> ${item.add_time}</h3>
-    <a href="${item.id}.tie" class="btn btn-1">Read This</a>
-</c:if>
-</li>
-</c:forEach>
-</ul>
+    <ul class="list-blog" STYLE="float:left">
+        <c:forEach items="${list}"  varStatus="i" var="item" >
+            <li>
+                <a href="self_center_p/${item.user.id}">${item.user.nuserName}</a>
+                <a href="/etalkto/${item.user.id}.user"><img src="${item.icon}}" width="100" height="100"/></a>
+            </li>
+        </c:forEach>
+    </ul>
+        <c:if test="${not empty messages}">
+            <c:forEach items="${messages}"  varStatus="i" var="item" >
+                <li>
+                    ${item.content};
+                </li>
+            </c:forEach>
+        </c:if>
 
 </div>
 </article>
