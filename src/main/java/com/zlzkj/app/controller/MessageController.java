@@ -27,4 +27,13 @@ public class MessageController extends BaseController {
         messageService.DeleteMessage(Integer.parseInt(id));
         return ajaxReturn(response,messageService.GetUsersMessage(thismesaage.getTargetId()));
     }
+    @RequestMapping("/send")
+
+    public String SendMessage(Message message, HttpServletResponse response){
+        if(message.getType().equals("etalk")){
+            messageService.NewMessage(message);
+        }
+        return "redirect:/etalkto/"+message.getTargetId()+".user";
+    }
+
 }

@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="clear"></div>            
               <img alt="" src="img/blog-1.jpg">                               
               <p>Morbi ullamcorper, leo eget varius elementum, orci leo feugiat lectus, vitae lobortis mauris velit tempor erat. Etiam eget orci at massa pretium fringilla ac non tortor. Fusce sed velit risus, vitae vehicula quam. Cras at turpis urna, eget volutpat neque. Nullam porttitor, est interdum placerat pharetra, erat sapien aliquet urna, at commodo risus tellus eu nunc.</p>
-              <a href="#" class="btn btn-1">${user}Read More</a>
+              <a href="#" class="btn btn-1">Read More</a>
             </li>  
                         
             <li>  
@@ -49,7 +49,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </li>
               <c:forEach items="${forum}" varStatus="i" var="item" >
               <li>
-                  <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
+                  <h2 > ${item.title}</h2> ----- <h3> ${item.addTime}</h3>
                   <a href="${item.id}.tie" class="btn btn-1">Read This</a>
               </li>
               </c:forEach>

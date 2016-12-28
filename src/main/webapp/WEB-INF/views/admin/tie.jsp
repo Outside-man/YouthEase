@@ -76,7 +76,7 @@
             if (t==false) return false;
             else{
                 $.ajax({
-                    url:'http://localhost:8080/YouthEase/delete/comment',
+                    url:'delete/comment',
                     type:'post',
                     data: "DeleteList=" + array,
                     dataType: "json",

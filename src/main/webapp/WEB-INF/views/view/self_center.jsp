@@ -110,15 +110,20 @@
                             <div class="container">
                                 <iframe scrolling="auto" rameborder="0" src="${centerUser.id}_1.myforum" name="right" width="80%" height="60%"></iframe>
                             </div>
-                            <c:if test="${centerUser.id==user.id}">
-                            <div class="container" hidden="true" id="e-talk">
-                                <iframe scrolling="auto"  rameborder="0" src="etalk.html" name="right" width="80%" height="60%"></iframe>
-                            </div>
-                            </c:if>
+
                         </ul>
 
                     </div>
 
+                    <c:if test="${centerUser.id==user.id}">
+
+                    <div class="inner-1">
+                        <h4>奇妙交流</h4>
+                        <div class="container" hidden="true" id="e-talk">
+                            <iframe scrolling="auto"  rameborder="0" src="etalk.html" name="right" width="80%" height="60%"></iframe>
+                        </div>
+                    </div>
+                    </c:if>
                 </article>
 
 

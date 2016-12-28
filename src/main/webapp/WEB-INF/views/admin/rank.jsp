@@ -164,7 +164,7 @@ function DelSelect(id){
         if (t==false) return false;
         else{
             $.ajax({
-                url:'http://localhost:8080/YouthEase/delete/user',
+                url:'delete/user',
                 type:'post',
                 data: "DeleteList=" + array,
                 dataType: "json",
