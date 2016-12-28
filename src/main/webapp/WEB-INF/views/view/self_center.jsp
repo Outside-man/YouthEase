@@ -44,6 +44,11 @@
 
         })
     }
+    var showing= 0;
+    function show(){
+        if(showing==0)
+        $("")
+    }
     function del(id1,id2){
         var array = new Array();
         array.push(id1);
@@ -98,15 +103,11 @@
                             beta-version
 
                             <div class="container">
-                                <iframe scrolling="auto" rameborder="0" src="mytie.html" name="right" width="100%" height="100%"></iframe>
+                                <iframe scrolling="auto" rameborder="0" src="${centerUser.id}_1.myforum" name="right" width="80%" height="60%"></iframe>
                             </div>
-                            <c:forEach items="${forum}" varStatus="i" var="item" >
-                                <li>
-                                    <h2 > ${item.title}</h2> ----- <h3> ${item.additionStatus}</h3>
-                                    <a href="${item.id}.tie" class="btn btn-1">Read This</a>
-                                </li>
-                            </c:forEach>
-
+                            <div class="container">
+                                <iframe scrolling="auto" rameborder="0" src="${centerUser.id}_1.myforum" name="right" width="80%" height="60%"></iframe>
+                            </div>
                         </ul>
 
                     </div>
@@ -249,7 +250,9 @@
                             </c:forEach>
                         </ul>
                     </div>
-
+                    <c:if test="${centerUser.id==user.id}">
+                        <button type="button"   class="btn btn-primary btn-small" id="${user.id}" onclick="show()"> Ease Talk</button>
+                    </c:if>
                 </article>
 
             </div>

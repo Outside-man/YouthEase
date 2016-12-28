@@ -4,6 +4,7 @@ import java.util.List;
 import com.zlzkj.core.base.BaseController;
 import hziee.smvc.model.Comment;
 import hziee.smvc.model.Forum;
+import hziee.smvc.model.User;
 import hziee.smvc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,8 @@ public class ForumTranserController extends BaseController{
     private PicService picService;
     @Autowired
     private  MediaService mediaService;
+    @Autowired
+    private PageContentService pageContentService;
     @RequestMapping("/*.forum")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String s =  httpServletRequest.getRequestURI();
@@ -52,5 +55,22 @@ public class ForumTranserController extends BaseController{
         if(forum.getAdditionId()!=null&&forum.getAdditionId()!=0)
             httpServletRequest.setAttribute("additionUrl",mediaService.getMediaUrl(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";
+    }
+    @RequestMapping("/*.myforum")
+    public String  getText(HttpServletRequest httpServletRequest){
+        String s =  httpServletRequest.getRequestURI();
+        String part[] =  s.split("[.|/]");
+        String result = part[part.length - 2];
+        System.out.println("test");
+        String specialRe[] = result.split("[_]");
+        User user = userService.getUser(Integer.parseInt(specialRe[0]));
+        httpServletRequest.setAttribute("centerUser",user);
+        Integer pages = Integer.parseInt(specialRe[1]);
+        System.out.println(pages);
+        httpServletRequest.setAttribute("pages",pages);
+        List list = pageContentService.getPageContentExact(pages,Forum.class,"user_id="+user.getId());
+        System.out.println(list.size());
+        httpServletRequest.setAttribute("forum",list);
+        return "/"+ IndexController.root + "/" + "mytie";
     }
 }

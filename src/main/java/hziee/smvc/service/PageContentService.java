@@ -50,6 +50,18 @@ public class PageContentService {
         List<Row> list = sqlRunner.select(sqlex);
         return  list;
     }
+    public List getPageContentExact(Integer page,Class<?> contentClass,String condition){
+        SQLBuilder sqlBuilder = SQLBuilder.getSQLBuilder(contentClass);
+        String s=sqlBuilder.getPojoName();
+        s="s_"+s;
+        sqlBuilder.getTableFields();
+        System.out.println("condtion:"+condition);
+        String element[]=condition.split("=");
+        String sqlex="SELECT * from "+s +" where "+element[0]+"="+element[1]+" limit "+pageService.getStart(page)+","+pageService.getContentPerCount();
+        System.out.println(sqlex);
+        List<Row> list = sqlRunner.select(sqlex);
+        return  list;
+    }
     public List GetAllMatched(String types,String match,Class<?> contentClass){
         SQLBuilder sqlBuilder  = SQLBuilder.getSQLBuilder(contentClass);
         String content  = sqlBuilder.getPojoName();

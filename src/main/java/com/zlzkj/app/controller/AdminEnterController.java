@@ -48,7 +48,6 @@ public class AdminEnterController {
         String s = request.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
-
         //访问的请求中有问号的时候
         String specialRe[] = result.split("[_]");
         Integer specialInt =null;

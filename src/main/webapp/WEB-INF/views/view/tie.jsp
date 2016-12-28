@@ -13,7 +13,9 @@
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<script language="javascript" type="text/javascript">
+    if(top.location!=self.location)top.location=self.location;
+</script>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <jsp:include page="../public/base.jsp"/>
@@ -65,7 +67,7 @@
                                     <div style="float:left;width:120px；">
                                         <a href="self_center_p/${item.comment.userId}"><img src="${item.iconUrl}" width="100" height="100"/></a>
                                         <div class="name-author"><i class="icon-user icon-white"></i>
-                                            <a href="self_center_p/${masteruser.id}" >${item.nuserName}</a>
+                                            <a href="self_center_p/${masteruser.id}" >${item.username}</a>
                                         </div>
                                     </div>
                                     <p style="text-indent:2em;">${item.comment.content}</p>

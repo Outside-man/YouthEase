@@ -51,8 +51,9 @@ public class UserController  extends BaseController{
     public String Login(User user,HttpServletRequest request,HttpServletResponse response){
         User reuser = userService.getUser(user.getEmail(),user.getPasswordHash());
      //   System.out.println(user.getPasswordHash());
-        if(reuser==null)
-            return "/"+IndexController.root+"/"+"register";
+        if(reuser==null){
+            return "/"+IndexController.root+"/"+"404";
+        }
         request.getSession().setAttribute("user",reuser);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(reuser));
         request.getSession().setAttribute("logininfo","login");
