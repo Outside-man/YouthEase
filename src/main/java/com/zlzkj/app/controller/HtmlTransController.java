@@ -18,11 +18,18 @@ public class HtmlTransController {
         System.out.println(s);
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
+
         if(result.equals("emotion")){
-            return "redirect:/getforum_emotion";
+            return "redirect:/emotion.forum";
         }
         if(result.equals("self_center")){
             return "redirect:/self_center_p/self";
+        }
+        if(result.equals("etalk_out")){
+            return "redirect:/etalkto/-1.user";
+        }
+        if(result.equals("etalk")){
+            return "redirect:/etalkto/-1.mes";
         }
         return "/"+IndexController.root+"/"+result;
     }

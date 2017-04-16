@@ -10,7 +10,7 @@
 				<property name="driver" value="com.mysql.jdbc.Driver" />
 				<property name="url" value="jdbc\:mysql\://127.0.0.1\:23334/baka?tinyInt1isBit\=false" />
 				<property name="username" value="root" />
-				<property name="password" value="kuaile1234" />
+				<property name="password" value="KUAILE1234" />
 				<!--<property name="prefix" value="s_"/>-->
 			</dataSource>
 		</environment>

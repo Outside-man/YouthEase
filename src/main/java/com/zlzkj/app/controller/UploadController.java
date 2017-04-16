@@ -25,10 +25,11 @@ public class UploadController {
     @RequestMapping("/userIcon")
     public String UploadIcon(@RequestParam("icon")MultipartFile file, HttpServletRequest request)
             throws IOException {
+
         User user =  (User)(request.getSession().getAttribute("user"));
         String filePath = resourceService.UploadIcon(file,request);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(user));
         System.out.println(filePath);
-        return IndexController.JumpTo("self_center");
+       return "redirect:/self_center_p/self";
     }
 }

@@ -1,5 +1,6 @@
 package com.zlzkj.app.controller;
 
+import com.zlzkj.core.base.BaseController;
 import com.zlzkj.core.util.UploadUtils;
 import hziee.smvc.mapper.UserMapper;
 import hziee.smvc.model.User;
@@ -9,10 +10,7 @@ import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletException;
@@ -27,7 +25,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserController  extends BaseController{
     @Autowired
     private UserService userService;
     @Autowired
@@ -42,24 +40,53 @@ public class UserController {
         if(userService.UserExisted(user.getEmail())){
             return "/"+ IndexController.index;
         }
+
+        User operator = (User)request.getSession().getAttribute("user");
         userService.NewUser(user);
+        if(operator==null)
         return "/"+IndexController.index;
+        else return "redirect:/admin/rank_1.html";
     }
     @RequestMapping("/login")
     public String Login(User user,HttpServletRequest request,HttpServletResponse response){
         User reuser = userService.getUser(user.getEmail(),user.getPasswordHash());
      //   System.out.println(user.getPasswordHash());
-        if(reuser==null)
-            return "/"+IndexController.root+"/"+"register";
+        if(reuser==null){
+            return "/"+IndexController.root+"/"+"404";
+        }
         request.getSession().setAttribute("user",reuser);
         request.getSession().setAttribute("iconUrl",picService.getIconUrl(reuser));
-        return "/"+IndexController.index;
+        request.getSession().setAttribute("logininfo","login");
+        return "redirect:/self_center_p/self";
     }
     @RequestMapping("/logout")
         public String Logout(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
             request.getSession().invalidate();
+            System.out.println("log out");
             request.getSession().setAttribute("logininfo","logout");
             return IndexController.index;
     }
+    @RequestMapping("/update")
+        public String update(User user,HttpServletRequest request,HttpServletRequest response){
+                User operator = (User)request.getSession().getAttribute("user");
+                user.getId();
+                userService.updateUser(user);
+                request.getSession().setAttribute("user",user);
+                if(user.getId().equals(operator.getId()))
+            return "redirect:/self_center_p/self";
+        else
+            return "redirect:/admin/rank_1.html";
+        }
+        @RequestMapping("/checking")
+    @ResponseBody
+    public String CheckUserEmail(@RequestParam("email")String email,HttpServletRequest request,HttpServletResponse response){
+                boolean result = userService.hasUser(email);
+                if(result==true){
+                    System.out.print("用户名已存在");
+                    return ajaxReturn(response,email,"邮箱已存在",1);
+                }else{
+                    return ajaxReturn(response,email,"合法的用户!",233);
+                }
+        }
 
 }

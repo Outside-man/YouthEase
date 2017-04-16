@@ -4,8 +4,8 @@ import java.util.List;
 import com.zlzkj.core.base.BaseController;
 import hziee.smvc.model.Comment;
 import hziee.smvc.model.Forum;
-import hziee.smvc.service.CommentService;
-import hziee.smvc.service.PostService;
+import hziee.smvc.model.User;
+import hziee.smvc.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,25 +22,60 @@ public class ForumTranserController extends BaseController{
     public PostService postService;
     @Autowired
     public CommentService commentService;
-    @RequestMapping("/getforum_emotion")
+    @Autowired
+    public UserService userService;
+    @Autowired
+    private  ResourceService resourceService;
+    @Autowired
+    private PicService picService;
+    @Autowired
+    private  MediaService mediaService;
+    @Autowired
+    private PageContentService pageContentService;
+    @Autowired
+    private  PageService pageService;
+    @RequestMapping("/*.forum")
     public String getForum(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        List list = postService.GetTypesOfForum("emotion");
+        String s =  httpServletRequest.getRequestURI();
+        String part[] =  s.split("[.|/]");
+        String result = part[part.length - 2];
+        List list = postService.GetTypesOfForum(result);
         httpServletRequest.getSession().setAttribute("forum", list);
-        return "/" + IndexController.root + "/" + "emotion";
+        return "/" + IndexController.root + "/" + result;
     }
     @RequestMapping("/*.tie")
     public String getText(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
-        System.out.println("A super servlet");
         String s =  httpServletRequest.getRequestURI();
         String part[] =  s.split("[.|/]");
         String result = part[part.length - 2];
         Integer id = Integer.parseInt(result);
-        System.out.println("see what comes out:"+id);
         Forum  forum  = postService.getForumFromId(id);
-        System.out.println("yup I am using this traditional way of debugging while not change to a advanced one:"+forum);
-        httpServletRequest.getSession().setAttribute("forum", forum);
-        httpServletRequest.getSession().setAttribute("comments",commentService.GetCommentsOfForum(forum.getId()));
-
+        List list= null;
+        httpServletRequest.setAttribute("forum", forum);
+        httpServletRequest.setAttribute("masteruser",userService.getUser(forum.getUserId()));
+        httpServletRequest.setAttribute("list",list=commentService.GetCommentsOfForum(forum.getId()));
+        forum.setFloors(list.size());
+        postService.UpdateForum(forum);
+        httpServletRequest.setAttribute("masterIconUrl",picService.getIconUrl(forum.getUserId()));
+        if(forum.getAdditionId()!=null&&forum.getAdditionId()!=0)
+            httpServletRequest.setAttribute("additionUrl",mediaService.getMediaUrl(forum.getId()));
         return "/"+ IndexController.root + "/" + "tie";
+    }
+    @RequestMapping("/*.myforum")
+    public String  getText(HttpServletRequest httpServletRequest){
+        String s =  httpServletRequest.getRequestURI();
+        String part[] =  s.split("[.|/]");
+        String result = part[part.length - 2];
+        System.out.println("test");
+        String specialRe[] = result.split("[_]");
+        User user = userService.getUser(Integer.parseInt(specialRe[0]));
+        httpServletRequest.setAttribute("centerUser",user);
+        Integer pages = Integer.parseInt(specialRe[1]);
+        System.out.println(pages);
+        httpServletRequest.setAttribute("pages",pageService.getPagesCount(postService.GetUsersForum(user.getId()).size()));
+        List list = pageContentService.getPageContentExact(pages,Forum.class,"user_id="+user.getId());
+        System.out.println(list.size());
+        httpServletRequest.setAttribute("forum",list);
+        return "/"+ IndexController.root + "/" + "mytie";
     }
 }

@@ -21,11 +21,15 @@ public class IndexController extends BaseController{
 
 	public static String index = "view/index";
 	public static String root = "view";
+	public static String adminRoot = "admin";
 	@RequestMapping(value={"/"})
 	public String index(Model model,HttpServletRequest request,HttpServletResponse response) {
 		return IndexController.index;
 	}
 	public static String JumpTo(String s){
 		return root+"/"+s;
+	}
+	public static String AdminJumpTo(String s){
+		return adminRoot+"/"+s;
 	}
 }
